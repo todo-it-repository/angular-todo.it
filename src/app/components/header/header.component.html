@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between w-full h-56">
+<header class="flex items-center justify-between w-full mt-6">
   <div class="flex items-center w-72 h-24 m-4">
       <h1 class="text-2xl font-semibold">
           Você tem <span class="">5</span> tarefas hoje para completar✏️
@@ -12,3 +12,21 @@
       >
   </div>
 </header>
+
+<div class="flex justify-center items-center w-full -mt-2">
+    <div class="relative w-96">
+        <img
+            src="../../../assets/search.svg"
+            alt="Search btn"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
+        >
+        <input
+            class="w-full pl-10 p-4 rounded-lg focus:outline-none bg-zinc-800 placeholder-white"
+            type="text"
+            placeholder="Pesquise suas tarefas aqui"
+            (input)="search()"
+            onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'Pesquise suas tarefas aqui'"
+        >
+    </div>
+</div>
