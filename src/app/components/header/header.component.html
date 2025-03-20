@@ -1,22 +1,22 @@
-<header class="flex items-center justify-between w-full mt-6">
-  <div class="flex items-center w-72 h-24 m-4">
+<header class="flex items-center justify-between w-full mt-6 mb-4">
+  <div class="flex items-center w-72 h-24 ml-4">
       <h1 class="text-2xl font-semibold">
           Você tem <span class="">5</span> tarefas hoje para completar✏️
       </h1>
   </div>
-  <div class="flex items-center space-x-4 m-2">
-      <img
-          src="../../../assets/default-profile.png"
-          alt="Default profile"
-          class="w-16 h-16 rounded-full"
-      >
-  </div>
+  <a href="#" class="flex items-center mr-4">
+    <img
+        src="/assets/img/default-profile.png"
+        alt="Default profile"
+        class="w-15 h-15 rounded-full"
+    >
+</a>
 </header>
 
 <div class="flex justify-center items-center w-full -mt-2">
-    <div class="relative w-96">
+    <div class="relative w-full ml-4 mr-4">
         <img
-            src="../../../assets/search.svg"
+            src="/assets/svg/search.svg"
             alt="Search btn"
             class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
         >
@@ -24,7 +24,7 @@
             class="w-full pl-10 p-4 rounded-lg focus:outline-none bg-zinc-800 placeholder-white"
             type="text"
             placeholder="Pesquise suas tarefas aqui"
-            (input)="search()"
+            (change)="search()"
             onfocus="this.placeholder = ''"
             onblur="this.placeholder = 'Pesquise suas tarefas aqui'"
         >
