@@ -1,8 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
+@theme {
+    --color-purple: #BA83DE;
+    --color-black: #020206;
+    --color-midnight: #181818;
+    --color-gray: #1E1E1E;
+    --color-graylight: #4F4F4F;
+    --color-beige: #FACBBA;
+    --color-ocean: #D7F0FF;
+    --color-pinklight: #FAD9FF;
+    --color-pink: #DE83B0;
+}
+
 html, body {
     font-family: 'Roboto', sans-serif;
-    background-color: black;
-    color: white;
+    background-color: #020206;
+    color: #FFFFFF;
+    height: 100%;
 }

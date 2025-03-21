@@ -1,15 +1,23 @@
-<main class="flex items-center justify-center w-full mt-6 mb-4">
-    <section>
+<main class="flex items-center justify-center w-full h-screen lg:gap-8">
+    <section class="flex flex-col items-center justify-center w-full h-full p-8 lg:flex-[0.3]">
+        <h2 class="text-center mb-4">{{ title }}</h2>
         <button
-            class="w-full p-4 rounded-lg focus:outline-none bg-zinc-800"
+            class="w-full p-4 rounded-lg border-none bg-gradient-to-r from-purple to-pink text-base font-semibold"
             type="button"
-        >Sign in</button>
-        <div>
+        >{{ primaryBtnText }}</button>
+        <div class="flex items-center justify-center w-full text-base">
             <span>or</span>
         </div>
         <button
-            class="w-full p-4 rounded-lg focus:outline-none bg-zinc-500"
+            class="w-full p-4 rounded-lg bg-midnight text-purple text-base font-semibold"
             type="button"
-        >Sing Up</button>
+        >{{ secondaryBtnText }}</button>
+    </section>
+    <section class="hidden lg:flex lg:flex-1 lg:flex-col lg:items-center lg:justify-center bg-midnight w-full h-full">
+        <h1 class="text-center mb-4">You Should, MoveIt!</h1>
+        <img
+            src="/assets/svg/main-illustration-for-background-white.svg"
+            alt="Main illustration"
+        >
     </section>
 </main>
