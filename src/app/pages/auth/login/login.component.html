@@ -2,4 +2,37 @@
     title="Login into your account"
     primaryBtnText="Login now"
     secondaryBtnText="Sign up now"
-></app-default-login>
+>
+    <form
+        class="flex flex-col w-full gap-6 mb-9"
+        [formGroup]="loginForm"
+    >
+        <app-input-form
+            formControlName="username"
+            inputName="username"
+            type="username"
+            placeholder="Enter your username"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/user-icon.svg"
+                alt="User"
+            >
+        </app-input-form>
+        <app-input-form
+            formControlName="password"
+            inputName="password"
+            type="password"
+            placeholder="Enter your password"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/password-icon.svg"
+                alt="Password"
+            >
+        </app-input-form>
+        <span
+            class="text-sm underline text-amber-50 text-end"
+        >Forgot password?</span>
+    </form>
+</app-default-login>

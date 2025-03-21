@@ -1,0 +1,18 @@
+<div class="bg-midnightlight rounded-lg text-base text-start">
+    <label
+    class="mb-2.5"
+        [for]="inputName"
+    >{{ label }}</label>
+    <div class="flex w-full rounded-lg">
+        <input
+            class="w-full rounded-lg border-none focus:outline-none pt-3 pb-3 pr-0 pl-5"
+            [type]="type"
+            [placeholder]="placeholder"
+            [value]="value"
+            (input)="onInput($event)"
+        />
+        <div class="rounded-e-lg p-3 bg-gradient-to-r from-purple to-pink text-base">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
