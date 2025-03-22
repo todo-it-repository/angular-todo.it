@@ -10,6 +10,7 @@ export class DefaultLoginComponent {
     @Input() title: string = "";
     @Input() primaryBtnText: string = "";
     @Input() secondaryBtnText: string = "";
+    @Input() primaryBtnDisabled: boolean = true;
     @Output("submit") onSumit = new EventEmitter();
     @Output("navigate") onNavigate = new EventEmitter();
 

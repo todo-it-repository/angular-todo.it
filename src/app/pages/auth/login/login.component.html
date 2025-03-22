@@ -4,6 +4,7 @@
     secondaryBtnText="Sign up now"
     (submit)="submit()"
     (navigate)="navigate()"
+    [primaryBtnDisabled]="!loginForm.valid"
 >
     <form
         class="flex flex-col w-full gap-6 mb-9"
