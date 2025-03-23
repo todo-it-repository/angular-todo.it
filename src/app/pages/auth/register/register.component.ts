@@ -7,13 +7,16 @@ import { DefaultLoginComponent } from '../../../components/default-login/default
 import { InputFormComponent } from '../../../components/input-form/input-form.component';
 import { AuthService } from '../../../services/auth.service';
 
-interface LoginForm {
+interface RegisterForm {
+    name: FormControl,
     login: FormControl,
-    password: FormControl
+    password: FormControl,
+    confirmPassword: FormControl
 }
 
+
 @Component({
-    selector: 'app-login',
+    selector: 'app-register',
     standalone: true,
     imports: [
     DefaultLoginComponent,
@@ -23,39 +26,42 @@ interface LoginForm {
     providers: [
         AuthService
     ],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.css'
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
-export class LoginComponent {
-    loginForm!: FormGroup<LoginForm>;
+export class RegisterComponent {
+    registerForm!: FormGroup<RegisterForm>;
 
     constructor(
         private router: Router,
         private authService: AuthService,
         private toastr: ToastrService
     ) {
-        this.loginForm = new FormGroup({
+        this.registerForm = new FormGroup({
+            name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
             login: new FormControl('', [
                 Validators.required,
+                Validators.maxLength(50),
                 Validators.pattern(/^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|[a-zA-Z0-9_-]{3,16})$/)
             ]),
-            password: new FormControl('', [Validators.required, Validators.minLength(8)])
+            password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+            confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
         });
     }
 
     submit() {
-        this.authService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
+        this.authService.login(this.registerForm.value.login, this.registerForm.value.password).subscribe({
             next: () => this.toastr.success("Login successful"),
             error: () => this.toastr.error("Login failed, Please try again later")
         });
     }
 
     navigate() {
-        this.router.navigate(['register']);
+        this.router.navigate(['login']);
     }
 
-    get isloginValid(): boolean {
-        const login = this.loginForm.get('login')?.value;
+    get isUsernameValid(): boolean {
+        const login = this.registerForm.get('login')?.value;
         return this.isEmailValid(login) || this.isNicknameValid(login);
       }
 

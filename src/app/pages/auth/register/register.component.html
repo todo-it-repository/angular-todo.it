@@ -1,0 +1,62 @@
+<app-default-login
+    title="Sign in and start today"
+    primaryBtnText="Sign up now"
+    secondaryBtnText="Login now"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [primaryBtnDisabled]="!registerForm.valid"
+>
+    <form
+        class="flex flex-col w-full gap-6 mb-9"
+        [formGroup]="registerForm"
+    >
+        <app-input-form
+            formControlName="name"
+            inputName="name"
+            type="text"
+            placeholder="Enter your name"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/user-icon.svg"
+                alt="User"
+            >
+        </app-input-form>
+        <app-input-form
+            formControlName="login"
+            inputName="login"
+            type="login"
+            placeholder="Enter your username or email"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/email-icon.svg"
+                alt="User or email"
+            >
+        </app-input-form>
+        <app-input-form
+            formControlName="password"
+            inputName="password"
+            type="password"
+            placeholder="Enter your password"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/password-icon.svg"
+                alt="Password"
+            >
+        </app-input-form>
+        <app-input-form
+            formControlName="confirmPassword"
+            inputName="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+        >
+            <img
+                class="w-9 h-8"
+                src="/assets/svg/password-icon.svg"
+                alt="Password"
+            >
+        </app-input-form>
+    </form>
+</app-default-login>

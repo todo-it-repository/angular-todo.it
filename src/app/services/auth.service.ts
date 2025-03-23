@@ -14,10 +14,10 @@ export class AuthService {
 
     }
 
-    login (username: string, password: string) {
-        return this.httpClient.post<LoginResponse>('/login', {username, password}).pipe(tap((value) => {
+    login (login: string, password: string) {
+        return this.httpClient.post<LoginResponse>('/login', {login, password}).pipe(tap((value) => {
             sessionStorage.setItem('auth-token', value.token);
-            sessionStorage.setItem('username', value.username);
+            sessionStorage.setItem('username', value.login);
         }));
     }
 }
