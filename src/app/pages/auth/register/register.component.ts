@@ -50,26 +50,13 @@ export class RegisterComponent {
     }
 
     submit() {
-        this.authService.login(this.registerForm.value.login, this.registerForm.value.password).subscribe({
-            next: () => this.toastr.success("Login successful"),
-            error: () => this.toastr.error("Login failed, Please try again later")
+        this.authService.register(this.registerForm.value.name, this.registerForm.value.login, this.registerForm.value.password).subscribe({
+            next: () => this.toastr.success("Sign up successful"),
+            error: () => this.toastr.error("Register failed, Please try again later")
         });
     }
 
     navigate() {
         this.router.navigate(['login']);
     }
-
-    get isUsernameValid(): boolean {
-        const login = this.registerForm.get('login')?.value;
-        return this.isEmailValid(login) || this.isNicknameValid(login);
-      }
-
-      private isEmailValid(value: string): boolean {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      }
-
-      private isNicknameValid(value: string): boolean {
-        return /^[a-zA-Z0-9_-]{3,16}$/.test(value);
-      }
 }
