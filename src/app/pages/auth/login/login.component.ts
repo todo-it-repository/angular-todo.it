@@ -45,7 +45,10 @@ export class LoginComponent {
 
     submit() {
         this.authService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
-            next: () => this.toastr.success("Login successful"),
+            next: () => {
+                this.toastr.success("Login successful");
+                this.router.navigate(['home']);
+            },
             error: () => this.toastr.error("Login failed, Please try again later")
         });
     }
