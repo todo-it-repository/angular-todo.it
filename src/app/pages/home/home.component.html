@@ -1,5 +1,8 @@
 <header>
-    <app-header></app-header>
+    <app-header
+        title="You have got 5 tasks today to complete"
+        placeholder="Search Task Here"
+    ></app-header>
 </header>
 <main>
     <div class="flex justify-between m-4">
@@ -10,7 +13,11 @@
             See All
         </button>
     </div>
-    <app-daily-task></app-daily-task>
+    <app-daily-task
+        title="Daily Task"
+        daily="3/3 Task Completed"
+        progressDescription="You are almost done go ahead"
+    ></app-daily-task>
 
     <div class="flex justify-between m-4">
         <h1

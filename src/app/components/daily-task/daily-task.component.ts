@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
     styleUrl: './daily-task.component.css'
 })
 export class DailyTaskComponent {
-    @Input() daily: string = '3/3 Task Completed';
+    @Input() title: string = '';
+    @Input() daily: string = '';
     @Input() progress: number = 100;
+    @Input() progressDescription: string = '';
 }

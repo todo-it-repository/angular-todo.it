@@ -1,7 +1,7 @@
 <header class="flex items-center justify-between w-full mt-6 mb-4">
   <div class="flex items-center w-72 h-24 ml-4">
       <h1 class="text-2xl font-semibold">
-          You have got <span class="">5</span> tasks today to complete
+        {{ title }}
       </h1>
   </div>
   <a href="#" class="flex items-center mr-4">
@@ -23,10 +23,9 @@
         <input
             class="w-full pl-10 p-4 font-light rounded-lg focus:outline-none bg-midnight placeholder-white"
             type="text"
-            placeholder="Search Task Here"
-            (change)="search()"
-            onfocus="this.placeholder = ''"
-            onblur="this.placeholder = 'Search Task Here'"
+            [placeholder]="isFocused ? '' : placeholder"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
         >
     </div>
 </div>
