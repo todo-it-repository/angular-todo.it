@@ -1,0 +1,46 @@
+<section class="flex flex-col m-4">
+    <div class="flex items-center justify-between">
+        <button class="cursor-pointer" (click)="previousWeek()">
+            <img
+                src="/assets/svg/arrow-left.svg"
+                alt="Previous"
+            >
+        </button>
+
+        <span class="text-xl font-normal text-purple">
+            {{ startDate | date: 'dd MMM' }} - {{ endDate | date: 'dd MMM' }}
+        </span>
+
+        <button class="cursor-pointer" (click)="nextWeek()">
+            <img
+                src="/assets/svg/arrow-right.svg"
+                alt="Next"
+            >
+        </button>
+    </div>
+
+    <div class="flex justify-center mt-4" id="calendar">
+        <div
+            *ngFor="let day of weekDays"
+            class="flex flex-col items-center cursor-pointer border-2 rounded-lg px-1 py-2"
+            (click)="selectDate(day.date)"
+            [class.text-purple]="day.date === selectedDate"
+            [class.opacity-100]="day.date === selectedDate"
+            [class.opacity-60]="day.date !== selectedDate"
+            [class.border-transparent]="day.date !== selectedDate"
+        >
+            <span class="text-sm font-bold tracking-wider">
+                {{ day.name }}
+            </span>
+
+            <div
+                class="flex items-center justify-center w-12 h-9"
+                [class.border-purple]="day.date === selectedDate"
+                [class.border-transparent]="day.date !== selectedDate"
+            >
+                {{ day.day }}
+            </div>
+        </div>
+    </div>
+</section>
+

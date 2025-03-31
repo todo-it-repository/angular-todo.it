@@ -1,0 +1,22 @@
+<header class="relative flex items-center w-full mt-6">
+    <button class="absolute left-4 top-1/2 -translate-y-1/2" (click)="goBack()">
+        <img
+            class="w-8 h-8"
+            src="/assets/svg/back-icon.svg"
+            alt="Back"
+        >
+    </button>
+
+    <div class="flex-grow text-center m-4">
+        <h1 class="text-2xl font-normal inline-block">
+            {{ title }}
+        </h1>
+    </div>
+</header>
+<main class="flex flex-col w-full">
+    <app-date-range></app-date-range>
+    <app-schedule-form
+        placeholderName="Name"
+        placeholderDescription="Description"
+    ></app-schedule-form>
+</main>
