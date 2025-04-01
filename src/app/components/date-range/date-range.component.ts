@@ -10,40 +10,47 @@ import { Component, OnInit } from '@angular/core';
     styleUrl: './date-range.component.css'
 })
 export class DateRangeComponent implements OnInit {
-    currentDate = new Date();
     startDate!: Date;
     endDate!: Date;
     selectedDate!: string;
     weekDays: { name: string; day: number; date: string }[] = [];
 
-
     ngOnInit() {
-        this.calendarWeek();
+        this.calendarWeek(new Date());
     }
 
-    calendarWeek() {
-        const startOfWeek = this.getStartOfWeek(this.currentDate);
+    calendarWeek(date: Date) {
+        const startOfWeek = this.getStartOfWeek(new Date(date));
         this.startDate = startOfWeek;
         this.endDate = new Date(startOfWeek);
         this.endDate.setDate(this.endDate.getDate() + 6);
 
         this.weekDays = Array.from({ length: 7 }).map((_, index) => {
-        const date = new Date(startOfWeek);
-        date.setDate(date.getDate() + index);
-        return {
-            name: date.toLocaleDateString('en-US', { weekday: 'short' }),
-            day: date.getDate(),
-            date: date.toISOString().split('T')[0]
-        };
+            const dayDate = new Date(startOfWeek);
+            dayDate.setDate(dayDate.getDate() + index);
+            return {
+                name: dayDate.toLocaleDateString('en-US', { weekday: 'short' }),
+                day: dayDate.getDate(),
+                date: dayDate.toISOString().split('T')[0]
+            };
         });
 
-        this.selectedDate = this.weekDays[0].date;
+        const today = new Date().toISOString().split('T')[0];
+        const dayInWeek = this.weekDays.find(day => day.date === today);
+
+        if (dayInWeek) {
+            this.selectedDate = today;
+        } else {
+            this.selectedDate = this.weekDays[0].date;
+        }
     }
 
     getStartOfWeek(date: Date): Date {
         const day = date.getDay();
         const diff = date.getDate() - day + (day === 0 ? -6 : 1);
-        return new Date(date.setDate(diff));
+        const result = new Date(date);
+        result.setDate(diff);
+        return result;
     }
 
     selectDate(date: string) {
@@ -51,12 +58,14 @@ export class DateRangeComponent implements OnInit {
     }
 
     previousWeek() {
-        this.currentDate.setDate(this.currentDate.getDate() - 7);
-        this.calendarWeek();
+        const newDate = new Date(this.startDate);
+        newDate.setDate(newDate.getDate() - 7);
+        this.calendarWeek(newDate);
     }
 
     nextWeek() {
-        this.currentDate.setDate(this.currentDate.getDate() + 7);
-        this.calendarWeek();
+        const newDate = new Date(this.startDate);
+        newDate.setDate(newDate.getDate() + 7);
+        this.calendarWeek(newDate);
     }
 }
