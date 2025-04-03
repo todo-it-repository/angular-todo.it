@@ -1,0 +1,38 @@
+<div class="flex flex-row m-4 gap-2">
+    <div class="flex-1 text-left">
+        <span class="font-['Inter'] text-xl opacity-80">
+            {{ titleStart }}
+        </span>
+        <div class="flex bg-midnight px-3 py-4 rounded-lg">
+            <img
+                class="w-6 h-6 mr-2"
+                src="/assets/svg/watch-icon.svg"
+                alt="Watch Icon"
+            >
+            <input
+                type="time"
+                class="bg-transparent text-lg text-white opacity-80 outline-none tracking-wide"
+                [(ngModel)]="startTime"
+            >
+            <span class="text-lg text-white opacity-80 px-2">Hr</span>
+        </div>
+    </div>
+    <div class="flex-1 text-left">
+        <span class="font-['Inter'] text-xl opacity-80">
+            {{ titleEnd }}
+        </span>
+        <div class="flex bg-midnight px-3 py-4 rounded-lg">
+            <img
+                class="w-6 h-6 mr-2"
+                src="/assets/svg/watch-icon.svg"
+                alt="Watch Icon"
+            >
+            <input
+                type="time"
+                class="bg-transparent text-lg text-white opacity-80 outline-none tracking-wide"
+                [(ngModel)]="endTime"
+            >
+            <span class="text-lg text-white opacity-80 px-2">Hr</span>
+        </div>
+    </div>
+</div>
