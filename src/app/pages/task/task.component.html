@@ -13,7 +13,7 @@
         </h1>
     </div>
 </header>
-<main class="flex flex-col w-full">
+<form [formGroup]="taskForm" class="flex flex-col w-full">
     <app-date-range></app-date-range>
     <app-schedule-form
         placeholderName="Name"
@@ -23,4 +23,30 @@
         titleStart="Start Time"
         titleEnd="End Time"
     ></app-time-box>
-</main>
+
+    <section class="flex flex-col m-4">
+        <h1 class="font-['Inter'] text-xl opacity-80 mb-2">
+            Priority
+        </h1>
+
+        <div class="flex justify-between w-full">
+            <app-priority
+                title="High"
+                priority="HIGH" [isSelected]="selectedPriority === 'HIGH'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+            <app-priority
+                title="Medium"
+                priority="MEDIUM"
+                [isSelected]="selectedPriority === 'MEDIUM'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+            <app-priority
+                title="Low"
+                priority="LOW"
+                [isSelected]="selectedPriority === 'LOW'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+        </div>
+    </section>
+</form>
