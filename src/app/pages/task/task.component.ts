@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+import { ButtonTaskComponent } from '../../components/button-task/button-task.component';
 import { DateRangeComponent } from '../../components/date-range/date-range.component';
 import { PriorityComponent } from '../../components/priority/priority.component';
 import { ScheduleFormComponent } from '../../components/schedule-form/schedule-form.component';
@@ -26,7 +27,8 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
     ScheduleFormComponent,
     TimeBoxComponent,
     PriorityComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonTaskComponent
 ],
     templateUrl: './task.component.html',
     styleUrl: './task.component.css'
@@ -35,6 +37,7 @@ export class TaskComponent implements OnInit {
     taskForm!: FormGroup<TaskForm>;
     @Input() title: string = 'Create new task';
     selectedPriority: InputPriorityTypes | null = null;
+
 
     constructor(
         private formBuilder: FormBuilder,
@@ -61,5 +64,9 @@ export class TaskComponent implements OnInit {
 
     goBack() {
         this.router.navigate(['/home']);
+    }
+
+    submit() {
+        console.log('criado');
     }
 }
