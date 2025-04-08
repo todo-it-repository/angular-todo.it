@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,24 @@ import { FormsModule } from '@angular/forms';
 export class TimeBoxComponent {
     @Input() titleStart: string = '';
     @Input() titleEnd: string = '';
-    startTime: string = '06:00';
-    endTime: string = '09:00';
+    startTime: string = '';
+    endTime: string = '';
+
+    @Output() startTimeChange = new EventEmitter<string>();
+    @Output() endTimeChange  = new EventEmitter<string>();
+
+    constructor() {
+        this.startTime = '09:00';
+        this.endTime = '17:00';
+
+        this.startTimeChange.emit(this.startTime);
+        this.endTimeChange.emit(this.endTime);
+    }
+
+    onStartTimeChange() {
+        this.startTimeChange.emit(this.startTime);
+    }
+    onEndTimeChange() {
+        this.endTimeChange.emit(this.endTime);
+    }
 }

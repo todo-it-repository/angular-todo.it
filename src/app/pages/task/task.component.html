@@ -13,15 +13,23 @@
         </h1>
     </div>
 </header>
-<form [formGroup]="taskForm" class="flex flex-col w-full">
-    <app-date-range></app-date-range>
+<form
+    [formGroup]="taskForm"
+    class="flex flex-col w-full"
+>
+    <app-date-range
+        (dateSelected)="onDateSelected($event)"
+    ></app-date-range>
     <app-schedule-form
+        [form]="taskForm"
         placeholderName="Name"
         placeholderDescription="Description"
     ></app-schedule-form>
     <app-time-box
         titleStart="Start Time"
         titleEnd="End Time"
+        (startTimeChange)="onStartTimeChange($event)"
+        (endTimeChange)="onEndTimeChange($event)"
     ></app-time-box>
 
     <section class="flex flex-col m-4">

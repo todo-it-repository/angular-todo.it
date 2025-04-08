@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-date-range',
@@ -14,6 +14,8 @@ export class DateRangeComponent implements OnInit {
     endDate!: Date;
     selectedDate!: string;
     weekDays: { name: string; day: number; date: string }[] = [];
+
+    @Output() dateSelected = new EventEmitter<Date>();
 
     ngOnInit() {
         this.calendarWeek(new Date());
@@ -43,6 +45,8 @@ export class DateRangeComponent implements OnInit {
         } else {
             this.selectedDate = this.weekDays[0].date;
         }
+
+        this.emitSelectedDate();
     }
 
     getStartOfWeek(date: Date): Date {
@@ -55,6 +59,7 @@ export class DateRangeComponent implements OnInit {
 
     selectDate(date: string) {
         this.selectedDate = date;
+        this.emitSelectedDate();
     }
 
     previousWeek() {
@@ -67,5 +72,10 @@ export class DateRangeComponent implements OnInit {
         const newDate = new Date(this.startDate);
         newDate.setDate(newDate.getDate() + 7);
         this.calendarWeek(newDate);
+    }
+
+    emitSelectedDate() {
+        const obj = new Date(this.selectedDate);
+        this.dateSelected.emit(obj);
     }
 }

@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
     selector: 'app-schedule-form',
     imports: [
-
+        ReactiveFormsModule,
+        CommonModule
     ],
     templateUrl: './schedule-form.component.html',
     styleUrl: './schedule-form.component.css'

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,12 @@ export class TaskService {
     }
 
     create(task: Task): Observable<Task> {
-        return this.http.post<Task>(this.API_URL, task);
+        const token = sessionStorage.getItem('auth-token');
+
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+
+        return this.http.post<Task>(this.API_URL, task, { headers });
     }
 }
