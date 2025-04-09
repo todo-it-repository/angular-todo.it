@@ -13,7 +13,7 @@ type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH';
 })
 export class TaskCardComponent {
     @Input() title: string = '';
-    @Input() date: string = '';
+    @Input() date: Date = new Date();
     @Input() priority: TaskPriority = 'LOW';
 
     getPriorityColor(): string {
