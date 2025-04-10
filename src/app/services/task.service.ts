@@ -9,7 +9,7 @@ import { Page } from '../models/page';
   providedIn: 'root'
 })
 export class TaskService {
-    API_URL: string = 'http://localhost:8080/tasks';
+    API_URL: string = 'https://java-todolist-production.up.railway.app/tasks';
 
     constructor(private http: HttpClient){
     }

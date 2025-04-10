@@ -8,7 +8,7 @@ import { LoginResponse } from '../types/login-response.type';
     providedIn: 'root'
 })
 export class AuthService {
-    API_URL: string = 'http://localhost:8080/auth';
+    API_URL: string = 'https://java-todolist-production.up.railway.app/auth';
 
     constructor(private httpClient: HttpClient) {
 
