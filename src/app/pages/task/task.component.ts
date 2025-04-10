@@ -123,19 +123,20 @@ export class TaskComponent implements OnInit {
     }
 
     onDateSelected(date: Date) {
+        const cleanDate = new Date(date);
+        cleanDate.setHours(0, 0, 0, 0);
+
         const currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0);
 
-        const selectedDate = new Date(date);
-        selectedDate.setHours(0, 0, 0, 0);
-
-        if (selectedDate < currentDate) {
+        if (cleanDate < currentDate) {
             this.toastr.warning('Selected date cannot be in the past');
-            this.selectedDate = currentDate;
+            this.selectedDate = new Date();
             return;
         }
+        const selectedDate = new Date(date);
 
-        this.selectedDate = date;
+        this.selectedDate = selectedDate;
         this.updateDateTime();
     }
 

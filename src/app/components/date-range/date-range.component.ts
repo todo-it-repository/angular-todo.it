@@ -75,7 +75,7 @@ export class DateRangeComponent implements OnInit {
     }
 
     emitSelectedDate() {
-        const obj = new Date(this.selectedDate);
-        this.dateSelected.emit(obj);
+        const date = new Date(this.selectedDate + 'T12:00:00');
+        this.dateSelected.emit(date);
     }
 }
