@@ -8,6 +8,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { TaskCardComponent } from '../../components/task-card/task-card.component';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
+import { ToastrService } from 'ngx-toastr';
+import { ToggleButtonComponent } from "../../components/toggle-button/toggle-button.component";
 
 @Component({
     selector: 'app-home',
@@ -16,22 +18,28 @@ import { TaskService } from '../../services/task.service';
     DailyTaskComponent,
     ButtonCreateComponent,
     CommonModule,
-    TaskCardComponent
+    TaskCardComponent,
+    ToggleButtonComponent
 ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
     todayTasks: Task[] = [];
+    tomorrowTasks: Task[] = [];
+    showAllTodayTasks: boolean = false;
+    showAllTomorrowTasks: boolean = false;
 
     constructor(
         private router: Router,
-        private taskService: TaskService
+        private taskService: TaskService,
+        private toastr: ToastrService
     ) {
     }
 
     ngOnInit(): void {
         this.loadTodayTasks();
+        this.loadTomorrowTasks(); 
     }
 
     navigate() {
@@ -39,10 +47,28 @@ export class HomeComponent implements OnInit {
     }
 
     loadTodayTasks() {
-        this.taskService.list(0, 10).subscribe({
+        this.taskService.listTodayTasks(0, 10).subscribe({
             next: (page)=> {
-                this.todayTasks = page.content.slice(0, 3);
-            }
+                this.todayTasks = page.content;
+            },
+            error: () => this.toastr.error("Failed to load today tasks. try again later"),
         });
+    }
+
+    loadTomorrowTasks() {
+        this.taskService.listTomorrowTasks(0, 10).subscribe({
+            next: (page)=> {
+                this.tomorrowTasks = page.content;
+            },
+            error: () => this.toastr.error("Failed to load tomorrow tasks. try again later"),
+        });
+    }
+
+    toggleShowAllTasks(isExpanded: boolean): void {
+        this.showAllTodayTasks = isExpanded;
+    }
+
+    toggleShowAllTomorrowTasks(isExpanded: boolean): void {
+        this.showAllTomorrowTasks = isExpanded;
     }
 }

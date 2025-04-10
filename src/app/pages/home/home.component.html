@@ -9,9 +9,6 @@
         <h1
             class="text-[22px]"
         >Progress</h1>
-        <button class="text-purple">
-            See All
-        </button>
     </div>
     <app-daily-task
         title="Daily Task"
@@ -23,14 +20,17 @@
         <h1
             class="text-[22px]"
         >Today's Task</h1>
-        <button class="text-purple">
-            See All
-        </button>
+        <app-toggle-button
+            [isExpanded]="showAllTodayTasks"
+            [onText]="'Show Less'"
+            [offText]="'Show All'"
+            (toggle)="toggleShowAllTasks($event)"
+        ></app-toggle-button>
     </div>
     <div class="flex flex-col m-4 gap-4">
         <ng-container *ngIf="todayTasks.length > 0; else noTasks">
             <app-task-card
-                *ngFor="let task of todayTasks"
+                *ngFor="let task of (showAllTodayTasks ? todayTasks : todayTasks.slice(0, 3))"
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
@@ -41,6 +41,36 @@
             <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
                 <span class="text-lg opacity-60">
                     No tasks for today...
+                </span>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="flex justify-between m-4">
+        <h1
+            class="text-[22px]"
+        >Tomorrow Task</h1>
+        <app-toggle-button
+            [isExpanded]="showAllTomorrowTasks"
+            [onText]="'Show Less'"
+            [offText]="'Show All'"
+            (toggle)="toggleShowAllTomorrowTasks($event)"
+        ></app-toggle-button>
+    </div>
+    <div class="flex flex-col m-4 gap-4">
+        <ng-container *ngIf="tomorrowTasks.length > 0; else noTasks">
+            <app-task-card
+                *ngFor="let task of (showAllTomorrowTasks ? tomorrowTasks : tomorrowTasks.slice(0, 3))"
+                [title]="task.title"
+                [date]="task.startAt"
+                [priority]="task.priority"
+            >
+            </app-task-card>
+        </ng-container>
+        <ng-template #noTasks>
+            <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
+                <span class="text-lg opacity-60">
+                    No tasks for tomorrow...
                 </span>
             </div>
         </ng-template>

@@ -33,4 +33,24 @@ export class TaskService {
 
         return this.http.get<Page<Task>>(this.API_URL + '?page=' + page + '&size=' + size, { headers });
     }
+
+    listTodayTasks(page: number = 0, size: number = 10): Observable<Page<Task>> {
+        const token = sessionStorage.getItem('auth-token');
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + token
+        });
+
+        return this.http.get<Page<Task>>(this.API_URL + '/today?page=' + page + '&size=' + size, { headers });
+    }
+
+    listTomorrowTasks(page: number = 0, size: number = 10): Observable<Page<Task>> {
+        const token = sessionStorage.getItem('auth-token');
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + token
+        });
+
+        return this.http.get<Page<Task>>(this.API_URL + '/tomorrow?page=' + page + '&size=' + size, { headers });
+    }
 }
