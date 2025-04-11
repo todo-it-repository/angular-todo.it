@@ -9,6 +9,8 @@ input[type="time"] {
 
     flex: 0 0 auto;
 
+    text-align: left;
+
     &::-webkit-calendar-picker-indicator,
     &::-webkit-inner-spin-button,
     &::-webkit-clear-button {
