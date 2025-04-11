@@ -3,18 +3,28 @@ input[type="time"] {
     -moz-appearance: none;
     appearance: none;
 
+    width: 85px;
+    min-width: 0;
+    max-width: 85px;
+
+    flex: 0 0 auto;
+
     &::-webkit-calendar-picker-indicator,
     &::-webkit-inner-spin-button,
     &::-webkit-clear-button {
         display: none;
         -webkit-appearance: none;
     }
+
+    &::-webkit-datetime-edit {
+        padding: 0;
+    }
+
+    &::-webkit-datetime-edit-fields-wrapper {
+        padding: 0;
+    }
 }
 
 input[type="time"]::-moz-calendar-picker-indicator {
     display: none;
-}
-
-input[type="time"]::-webkit-datetime-edit {
-    padding: 0;
 }
