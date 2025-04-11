@@ -7,7 +7,7 @@ input[type="time"] {
     min-width: 0;
     max-width: 85px;
 
-    flex: 0 0 auto;
+    flex: auto;
 
     text-align: left;
 
