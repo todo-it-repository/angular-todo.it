@@ -1,9 +1,20 @@
-input[type="time"]::-webkit-inner-spin-button,
-input[type="time"]::-webkit-calendar-picker-indicator {
-    display: none;
+input[type="time"] {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &::-webkit-calendar-picker-indicator,
+    &::-webkit-inner-spin-button,
+    &::-webkit-clear-button {
+        display: none;
+        -webkit-appearance: none;
+    }
 }
 
-input[type="time"]::-moz-focus-inner {
-    border: 0;
+input[type="time"]::-moz-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="time"]::-webkit-datetime-edit {
+    padding: 0;
 }

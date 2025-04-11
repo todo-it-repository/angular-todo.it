@@ -4,7 +4,7 @@
         placeholder="Search Task Here"
     ></app-header>
 </header>
-<main>
+<main class="">
     <div class="flex justify-between m-4">
         <h1
             class="text-[22px]"
@@ -23,7 +23,7 @@
         <app-toggle-button
             [isExpanded]="showAllTodayTasks"
             [onText]="'Show Less'"
-            [offText]="'Show All'"
+            [offText]="'See All'"
             (toggle)="toggleShowAllTasks($event)"
         ></app-toggle-button>
     </div>
@@ -53,12 +53,12 @@
         <app-toggle-button
             [isExpanded]="showAllTomorrowTasks"
             [onText]="'Show Less'"
-            [offText]="'Show All'"
+            [offText]="'See All'"
             (toggle)="toggleShowAllTomorrowTasks($event)"
         ></app-toggle-button>
     </div>
     <div class="flex flex-col m-4 gap-4">
-        <ng-container *ngIf="tomorrowTasks.length > 0; else noTasks">
+        <ng-container *ngIf="tomorrowTasks.length > 0; else noTasksTomorrow">
             <app-task-card
                 *ngFor="let task of (showAllTomorrowTasks ? tomorrowTasks : tomorrowTasks.slice(0, 3))"
                 [title]="task.title"
@@ -67,10 +67,10 @@
             >
             </app-task-card>
         </ng-container>
-        <ng-template #noTasks>
+        <ng-template #noTasksTomorrow>
             <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
                 <span class="text-lg opacity-60">
-                    No tasks for tomorrow...
+                    No tasks to do tomorrow...
                 </span>
             </div>
         </ng-template>
