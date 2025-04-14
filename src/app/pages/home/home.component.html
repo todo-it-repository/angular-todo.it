@@ -24,11 +24,11 @@
             [isExpanded]="showAllTodayTasks"
             [onText]="'Show Less'"
             [offText]="'See All'"
-            (toggle)="toggleShowAllTasks($event)"
+            (toggle)="toggleShowAllTasksToday($event)"
         ></app-toggle-button>
     </div>
     <div class="flex flex-col m-4 gap-4">
-        <ng-container *ngIf="todayTasks.length > 0; else noTasks">
+        <ng-container *ngIf="todayTasks.length > 0; else noTasksToday">
             <app-task-card
                 *ngFor="let task of (showAllTodayTasks ? todayTasks : todayTasks.slice(0, 3))"
                 [title]="task.title"
@@ -37,7 +37,7 @@
             >
             </app-task-card>
         </ng-container>
-        <ng-template #noTasks>
+        <ng-template #noTasksToday>
             <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
                 <span class="text-lg opacity-60">
                     No tasks for today...
@@ -75,6 +75,37 @@
             </div>
         </ng-template>
     </div>
+
+    <div class="flex justify-between m-4">
+        <h1
+            class="text-[22px]"
+        >All Tasks</h1>
+        <app-toggle-button
+            [isExpanded]="showAllTasks"
+            [onText]="'Show Less'"
+            [offText]="'See All'"
+            (toggle)="toggleListAllTasks($event)"
+        ></app-toggle-button>
+    </div>
+    <div class="flex flex-col m-4 gap-4">
+        <ng-container *ngIf="allTasks.length > 0; else noTasks">
+            <app-task-card
+                *ngFor="let task of (showAllTasks ? allTasks : allTasks.slice(0, 3))"
+                [title]="task.title"
+                [date]="task.startAt"
+                [priority]="task.priority"
+            >
+            </app-task-card>
+        </ng-container>
+        <ng-template #noTasks>
+            <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
+                <span class="text-lg opacity-60">
+                    Your tasks will appear here
+                </span>
+            </div>
+        </ng-template>
+    </div>
+
     <app-button-create
         (navigate)="navigate()"
     ></app-button-create>

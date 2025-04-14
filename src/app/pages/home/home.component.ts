@@ -25,8 +25,10 @@ import { ToggleButtonComponent } from "../../components/toggle-button/toggle-but
     styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+    allTasks: Task[] = [];
     todayTasks: Task[] = [];
     tomorrowTasks: Task[] = [];
+    showAllTasks: boolean = false;
     showAllTodayTasks: boolean = false;
     showAllTomorrowTasks: boolean = false;
 
@@ -39,7 +41,8 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadTodayTasks();
-        this.loadTomorrowTasks(); 
+        this.loadTomorrowTasks();
+        this.listAllTasks();
     }
 
     navigate() {
@@ -64,11 +67,24 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    toggleShowAllTasks(isExpanded: boolean): void {
+    listAllTasks() {
+        this.taskService.list(0, 15).subscribe({
+            next: (page)=> {
+                this.allTasks = page.content;
+            },
+            error: () => this.toastr.error("Failed to load all tasks. try again later"),
+        });
+    }
+
+    toggleShowAllTasksToday(isExpanded: boolean): void {
         this.showAllTodayTasks = isExpanded;
     }
 
     toggleShowAllTomorrowTasks(isExpanded: boolean): void {
         this.showAllTomorrowTasks = isExpanded;
+    }
+
+    toggleListAllTasks(isExpanded: boolean): void {
+        this.showAllTasks = isExpanded;
     }
 }
