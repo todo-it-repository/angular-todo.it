@@ -1,4 +1,7 @@
-<div class=" flex flex-row items-center rounded-lg w-full h-20 bg-midnightlight">
+<div
+    class=" flex flex-row items-center rounded-lg w-full h-20 bg-midnightlight"
+    (click)="navigate()"
+>
     <div
         class=" rounded-l-lg w-3 h-full"
         [ngClass]="getPriorityColor()"
@@ -6,7 +9,7 @@
 
     <div class="flex flex-col justify-center flex-grow ml-4">
         <div class="font- text-base">
-            <span>{{ title }}</span>
+            <span [class.line-through]="isCompleted">{{ title }}</span>
         </div>
         <div class="flex items-center">
             <img
@@ -19,11 +22,14 @@
             </span>
         </div>
     </div>
-
-    <div class="flex items-center justify-center w-12 h-12 cursor-pointer">
-        <img
-            src="/assets/svg/check-icon.svg"
-            alt="Check"
-        >
-    </div>
+    <button
+        class="flex items-center justify-center w-12 h-12 cursor-pointer"
+        type="button"
+        (click)="onClick($event)"
+    >
+    <img
+        [src]="isCompleted ? '/assets/svg/check-icon.svg' : '/assets/svg/circle-icon.svg'"
+        [alt]="isCompleted ? 'Completed' : 'Not completed'"
+    >
+    </button>
 </div>

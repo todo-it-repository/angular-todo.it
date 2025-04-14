@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH';
 
@@ -12,9 +12,13 @@ type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH';
     styleUrl: './task-card.component.css'
 })
 export class TaskCardComponent {
+    @Input() id: string = '';
     @Input() title: string = '';
     @Input() date: Date = new Date();
     @Input() priority: TaskPriority = 'LOW';
+    @Input() isCompleted: boolean = false;
+    @Output() statusChange = new EventEmitter<boolean>();
+    @Output("navigate") onNavigate = new EventEmitter();
 
     getPriorityColor(): string {
         switch (this.priority) {
@@ -27,5 +31,15 @@ export class TaskCardComponent {
             default:
                 return 'bg-pinklight';
         }
+    }
+
+    onClick(event: Event) {
+        event.stopPropagation();
+        this.isCompleted = !this.isCompleted;
+        this.statusChange.emit(this.isCompleted);
+    }
+
+    navigate() {
+        this.onNavigate.emit();
     }
 }
