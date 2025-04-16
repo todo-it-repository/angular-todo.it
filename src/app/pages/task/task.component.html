@@ -28,8 +28,12 @@
     <app-time-box
         titleStart="Start Time"
         titleEnd="End Time"
-        (startTimeChange)="onStartTimeChange($event)"
-        (endTimeChange)="onEndTimeChange($event)"
+        [startTime]="startTime"
+        [endTime]="endTime"
+        [selectedDate]="selectedDate"
+        (startTimeChange)="startTime = $event"
+        (endTimeChange)="endTime = $event"
+        (dateTimeUpdate)="onDateTimeUpdate($event)"
     ></app-time-box>
 
     <section class="flex flex-col m-4">
