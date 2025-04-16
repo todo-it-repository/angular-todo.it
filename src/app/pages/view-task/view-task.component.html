@@ -1,0 +1,85 @@
+<header class="relative flex items-center w-full mt-6">
+    <button
+        class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
+        (click)="goBack()"
+    >
+        <img
+            class="w-8 h-8"
+            src="/assets/svg/back-icon.svg"
+            alt="Back"
+        >
+    </button>
+
+    <div class="flex-grow text-center m-4">
+        <h1 class="text-2xl font-normal inline-block">
+            {{ title }}
+        </h1>
+    </div>
+</header>
+<form
+    [formGroup]="taskForm"
+    class="flex flex-col w-full"
+>
+    <app-date-range
+        (dateSelected)="onDateSelected($event)"
+    ></app-date-range>
+
+    <app-schedule-form
+        [form]="taskForm"
+        placeholderName="Name"
+        placeholderDescription="Description"
+    ></app-schedule-form>
+
+    <app-time-box
+        titleStart="Start Time"
+        titleEnd="End Time"
+        [startTime]="startTime"
+        [endTime]="endTime"
+        [selectedDate]="selectedDate"
+        (startTimeChange)="startTime = $event"
+        (endTimeChange)="endTime = $event"
+        (dateTimeUpdate)="onDateTimeUpdate($event)"
+    ></app-time-box>
+
+    <section class="flex flex-col m-4">
+        <h1 class="font-['Inter'] text-xl opacity-80 mb-2">
+            Priority
+        </h1>
+
+        <div class="flex justify-between w-full">
+            <app-priority
+                title="High"
+                priority="HIGH"
+                [isSelected]="selectedPriority === 'HIGH'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+            <app-priority
+                title="Medium"
+                priority="MEDIUM"
+                [isSelected]="selectedPriority === 'MEDIUM'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+            <app-priority
+                title="Low"
+                priority="LOW"
+                [isSelected]="selectedPriority === 'LOW'"
+                (priorityChange)="setPriority($event)"
+            ></app-priority>
+        </div>
+    </section>
+
+    <section class="flex flex-col m-4">
+        <div class="w-full h-0.5 bg-amber-50 mb-8"></div>
+        <div class="flex flex-row w-full gap-2">
+            <app-button-task
+                class="w-full"
+                title="Edit Task"
+            ></app-button-task>
+            <app-button-default
+                class="w-full"
+                title="Delete Task"
+            ></app-button-default>
+        </div>
+    </section>
+</form>
+

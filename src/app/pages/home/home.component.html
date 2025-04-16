@@ -34,6 +34,7 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                (navigate)="navigateToTask()"
             >
             </app-task-card>
         </ng-container>
@@ -64,6 +65,7 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                (navigate)="navigateToTask()"
             >
             </app-task-card>
         </ng-container>
@@ -94,6 +96,7 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                (navigate)="navigateToTask()"
             >
             </app-task-card>
         </ng-container>

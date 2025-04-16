@@ -49,6 +49,10 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['task']);
     }
 
+    navigateToTask() {
+        this.router.navigate(['view']);
+    }
+
     loadTodayTasks() {
         this.taskService.listTodayTasks(0, 10).subscribe({
             next: (page)=> {

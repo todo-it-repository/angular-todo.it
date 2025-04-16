@@ -53,4 +53,14 @@ export class TaskService {
 
         return this.http.get<Page<Task>>(this.API_URL + '/tomorrow?page=' + page + '&size=' + size, { headers });
     }
+
+    view(id: string): Observable<Task> {
+        const token = sessionStorage.getItem('auth-token');
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + token
+        });
+
+        return this.http.get<Task>(this.API_URL + '/' + id, { headers });
+    }
 }

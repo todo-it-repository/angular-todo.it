@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { TaskComponent } from './pages/task/task.component';
+import { ViewTaskComponent } from './pages/view-task/view-task.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,11 @@ export const routes: Routes = [
     {
         path: 'task',
         component: TaskComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'view',
+        component: ViewTaskComponent,
         canActivate: [AuthGuard]
     }
 ];
