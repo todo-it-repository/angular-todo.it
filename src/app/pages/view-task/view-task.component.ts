@@ -9,10 +9,12 @@ import { DateRangeComponent } from '../../components/date-range/date-range.compo
 import { PriorityComponent } from '../../components/priority/priority.component';
 import { ScheduleFormComponent } from '../../components/schedule-form/schedule-form.component';
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
+import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
-import { DateTimeService } from '../../services/date-tme.service';
 
 interface TaskForm {
+    id: FormControl,
+    userId: FormControl,
     title: FormControl,
     description: FormControl,
     startAt: FormControl,
@@ -52,16 +54,19 @@ export class ViewTaskComponent implements OnInit {
         private toastr: ToastrService,
         private dateTimeService: DateTimeService
     ) {
+
+    }
+
+    ngOnInit() {
         this.taskForm = new FormGroup<TaskForm>({
+            id: new FormControl('', { nonNullable: true }),
+            userId: new FormControl('', { nonNullable: true }),
             title: new FormControl('', { nonNullable: true }),
             description: new FormControl('', { nonNullable: true }),
             startAt: new FormControl(new Date(), { nonNullable: true }),
             endAt: new FormControl(new Date(), { nonNullable: true }),
             priority: new FormControl('LOW' as InputPriorityTypes, { nonNullable: true })
         });
-    }
-
-    ngOnInit() {
         this.route.params.subscribe(params => {
             if (params['id']) {
                 this.taskId = params['id'];
@@ -69,6 +74,7 @@ export class ViewTaskComponent implements OnInit {
             }
         });
     }
+
 
     goBack() {
         this.router.navigate(['/home']);
@@ -78,31 +84,6 @@ export class ViewTaskComponent implements OnInit {
         this.selectedPriority = priority;
         this.taskForm.patchValue({
             priority: priority
-        });
-    }
-
-    private loadTask() {
-        this.taskService.view(this.taskId).subscribe({
-            next: (task) => {
-                this.taskForm.patchValue({
-                    title: task.title,
-                    description: task.description,
-                    startAt: new Date(task.startAt),
-                    endAt: new Date(task.endAt),
-                    priority: task.priority
-                });
-                this.selectedPriority = task.priority;
-            },
-            error: (error) => {
-                if (error.status === 404) {
-                    this.toastr.error('Task not found');
-                } else if (error.status === 403) {
-                    this.toastr.error('You do not have permission to view this task');
-                } else {
-                    this.toastr.error('Failed to load task details');
-                }
-                this.router.navigate(['/home']);
-            }
         });
     }
 
@@ -119,6 +100,20 @@ export class ViewTaskComponent implements OnInit {
         this.taskForm.patchValue({
             startAt: dateTime.startAt,
             endAt: dateTime.endAt
+        });
+    }
+
+    loadTask() {
+        this.taskService.view(this.taskId).subscribe({
+            next: (task) => {
+                this.taskForm.patchValue({
+                    title: task.title,
+                    description: task.description,
+                    startAt: task.startAt,
+                    endAt: task.endAt,
+                    priority: task.priority
+                })
+            }
         });
     }
 }

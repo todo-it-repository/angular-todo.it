@@ -31,10 +31,11 @@
         <ng-container *ngIf="todayTasks.length > 0; else noTasksToday">
             <app-task-card
                 *ngFor="let task of (showAllTodayTasks ? todayTasks : todayTasks.slice(0, 3))"
+                [id]="task.id"
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
-                (navigate)="navigateToTask()"
+                (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
         </ng-container>
@@ -62,10 +63,11 @@
         <ng-container *ngIf="tomorrowTasks.length > 0; else noTasksTomorrow">
             <app-task-card
                 *ngFor="let task of (showAllTomorrowTasks ? tomorrowTasks : tomorrowTasks.slice(0, 3))"
+                [id]="task.id"
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
-                (navigate)="navigateToTask()"
+                (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
         </ng-container>
@@ -93,10 +95,11 @@
         <ng-container *ngIf="allTasks.length > 0; else noTasks">
             <app-task-card
                 *ngFor="let task of (showAllTasks ? allTasks : allTasks.slice(0, 3))"
+                [id]="task.id"
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
-                (navigate)="navigateToTask()"
+                (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
         </ng-container>

@@ -1,26 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { ButtonCreateComponent } from '../../components/button-create/button-create.component';
 import { DailyTaskComponent } from '../../components/daily-task/daily-task.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { TaskCardComponent } from '../../components/task-card/task-card.component';
+import { ToggleButtonComponent } from '../../components/toggle-button/toggle-button.component';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
-import { ToastrService } from 'ngx-toastr';
-import { ToggleButtonComponent } from "../../components/toggle-button/toggle-button.component";
+import { ViewTask } from './../../models/view-task';
 
 @Component({
     selector: 'app-home',
     imports: [
-    HeaderComponent,
-    DailyTaskComponent,
-    ButtonCreateComponent,
-    CommonModule,
-    TaskCardComponent,
-    ToggleButtonComponent
-],
+        HeaderComponent,
+        DailyTaskComponent,
+        ButtonCreateComponent,
+        CommonModule,
+        TaskCardComponent,
+        ToggleButtonComponent
+    ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
@@ -49,8 +50,8 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['task']);
     }
 
-    navigateToTask() {
-        this.router.navigate(['view']);
+    navigateToTask(taskId: string) {
+        this.router.navigate(['task', taskId]);
     }
 
     loadTodayTasks() {

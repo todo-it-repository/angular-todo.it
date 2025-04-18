@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateTimeService } from '../../services/date-tme.service';
+import { DateTimeService } from '../../services/date-time.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

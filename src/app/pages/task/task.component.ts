@@ -8,8 +8,9 @@ import { DateRangeComponent } from '../../components/date-range/date-range.compo
 import { PriorityComponent } from '../../components/priority/priority.component';
 import { ScheduleFormComponent } from '../../components/schedule-form/schedule-form.component';
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
+import { CreateTask } from '../../models/create-task';
+import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
-import { DateTimeService } from '../../services/date-tme.service';
 
 interface TaskForm {
     title: FormControl,
@@ -120,11 +121,11 @@ export class TaskComponent implements OnInit {
             return;
         }
 
-        const task = {
-            title: this.taskForm.get('title')?.value,
-            description: this.taskForm.get('description')?.value,
-            startAt: this.taskForm.get('startAt')?.value,
-            endAt: this.taskForm.get('endAt')?.value,
+        const task: CreateTask = {
+            title: this.taskForm.get('title')?.value || '',
+            description: this.taskForm.get('description')?.value || '',
+            startAt: this.taskForm.get('startAt')?.value || '',
+            endAt: this.taskForm.get('endAt')?.value || '',
             priority: this.taskForm.get('priority')?.value || 'LOW'
         };
 

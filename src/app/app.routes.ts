@@ -3,9 +3,9 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthGuard } from './services/auth-guard.service';
 import { TaskComponent } from './pages/task/task.component';
 import { ViewTaskComponent } from './pages/view-task/view-task.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -32,7 +32,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'view',
+        path: 'task/:id',
         component: ViewTaskComponent,
         canActivate: [AuthGuard]
     }
