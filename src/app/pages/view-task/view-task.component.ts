@@ -75,9 +75,12 @@ export class ViewTaskComponent implements OnInit {
         });
     }
 
-
     goBack() {
         this.router.navigate(['/home']);
+    }
+
+    updateTitle(taskTitle: string) {
+        this.title = taskTitle;
     }
 
     setPriority(priority: InputPriorityTypes): void {
@@ -106,13 +109,18 @@ export class ViewTaskComponent implements OnInit {
     loadTask() {
         this.taskService.view(this.taskId).subscribe({
             next: (task) => {
+                this.updateTitle(task.title);
+                this.selectedPriority = task.priority;
+
                 this.taskForm.patchValue({
+                    id: task.id,
+                    userId: task.userId,
                     title: task.title,
                     description: task.description,
                     startAt: task.startAt,
                     endAt: task.endAt,
                     priority: task.priority
-                })
+                });
             }
         });
     }
