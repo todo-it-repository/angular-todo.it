@@ -57,6 +57,10 @@ export class LoginComponent {
         this.router.navigate(['register']);
     }
 
+    navigateToForgotPassword() {
+        this.router.navigate(['forgot-password']);
+    }
+
     get isloginValid(): boolean {
         const login = this.loginForm.get('login')?.value;
         return this.isEmailValid(login) || this.isNicknameValid(login);
