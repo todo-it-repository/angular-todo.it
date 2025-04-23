@@ -10,7 +10,6 @@ import { TaskCardComponent } from '../../components/task-card/task-card.componen
 import { ToggleButtonComponent } from '../../components/toggle-button/toggle-button.component';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
-import { ViewTask } from './../../models/view-task';
 
 @Component({
     selector: 'app-home',
