@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -40,12 +40,13 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
 })
 export class ViewTaskComponent implements OnInit {
     taskForm!: FormGroup<TaskForm>;
-    @Input() title: string = 'Create new task';
+    @Input() title: string = '';
     selectedPriority: InputPriorityTypes = 'LOW';
     taskId: string = '';
     startTime: string = '';
     endTime: string = '';
     selectedDate: Date = new Date();
+    @ViewChild(DateRangeComponent) dateRangeComponent!: DateRangeComponent;
 
     constructor(
         private route: ActivatedRoute,
@@ -93,10 +94,23 @@ export class ViewTaskComponent implements OnInit {
     onDateSelected(date: Date) {
         if (this.dateTimeService.isDateInPast(date)) {
             this.toastr.warning('Selected date cannot be in the past');
-            this.selectedDate = new Date();
             return;
         }
         this.selectedDate = date;
+
+        this.updateDateTime();
+    }
+
+    updateDateTime() {
+        if (this.startTime && this.endTime) {
+            const startDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.startTime);
+            const endDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.endTime);
+
+            this.taskForm.patchValue({
+                startAt: startDateTime,
+                endAt: endDateTime
+            });
+        }
     }
 
     onDateTimeUpdate(dateTime: {startAt: string, endAt: string}) {
@@ -109,8 +123,21 @@ export class ViewTaskComponent implements OnInit {
     loadTask() {
         this.taskService.view(this.taskId).subscribe({
             next: (task) => {
+                const date = task.startAt.split(' ')[0];
+                const dateParts = date.split('/');
+                const day = parseInt(dateParts[0]);
+                const month = parseInt(dateParts[1]) - 1;
+                const year = parseInt(dateParts[2]);
+
+                const taskDate = new Date(year, month, day);
+
                 this.updateTitle(task.title);
+                this.selectedDate = taskDate;
+                this.startTime = task.startAt.split(' ')[1];
+                this.endTime = task.endAt.split(' ')[1];
                 this.selectedPriority = task.priority;
+
+                this.updateDate(taskDate);
 
                 this.taskForm.patchValue({
                     id: task.id,
@@ -121,6 +148,53 @@ export class ViewTaskComponent implements OnInit {
                     endAt: task.endAt,
                     priority: task.priority
                 });
+            },
+            error: (error) => {
+                this.toastr.error('Error loading task: ' + error.message);
+            }
+        });
+    }
+
+    updateDate(date: Date) {
+        setTimeout(() => {
+            if (this.dateRangeComponent) {
+                this.dateRangeComponent.calendarWeek(date);
+                const dateString = date.toISOString().split('T')[0];
+                this.dateRangeComponent.selectDate(dateString);
+            }
+        });
+    }
+
+    save() {
+        const updatedTask = {
+            id: this.taskForm.get('id')?.value,
+            userId: this.taskForm.get('userId')?.value,
+            title: this.taskForm.get('title')?.value,
+            description: this.taskForm.get('description')?.value,
+            startAt: this.taskForm.get('startAt')?.value,
+            endAt: this.taskForm.get('endAt')?.value,
+            priority: this.taskForm.get('priority')?.value
+        };
+
+        this.taskService.update(this.taskId, updatedTask).subscribe({
+            next: () => {
+                this.toastr.success('Task updated successfully');
+                this.router.navigate(['/home']);
+            },
+            error: (error) => {
+                this.toastr.error('Error updating task: ' + error.message);
+            }
+        });
+    }
+
+    delete() {
+        this.taskService.delete(this.taskId).subscribe({
+            next: () => {
+                this.toastr.success('Task deleted successfully');
+                this.router.navigate(['/home']);
+            },
+            error: (error) => {
+                this.toastr.error('Error deleting task: ' + error.message);
             }
         });
     }

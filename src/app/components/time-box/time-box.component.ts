@@ -14,8 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class TimeBoxComponent {
     @Input() titleStart: string = '';
     @Input() titleEnd: string = '';
-    @Input() startTime: string = '09:00';
-    @Input() endTime: string = '17:00';
+    @Input() startTime: string = '';
+    @Input() endTime: string = '';
     @Input() selectedDate: Date = new Date();
 
     @Output() startTimeChange = new EventEmitter<string>();

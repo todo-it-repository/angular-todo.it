@@ -3,7 +3,7 @@ export interface ViewTask {
     userId: string;
     title: string;
     description: string;
-    startAt: Date;
-    endAt: Date;
+    startAt: string;
+    endAt: string;
     priority: "LOW" | "MEDIUM" | "HIGH";
 }

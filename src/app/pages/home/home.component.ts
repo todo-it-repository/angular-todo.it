@@ -59,7 +59,9 @@ export class HomeComponent implements OnInit {
             next: (page)=> {
                 this.todayTasks = page.content;
             },
-            error: () => this.toastr.error("Failed to load today tasks. try again later"),
+            error: () => {
+                this.toastr.error("Failed to load today tasks. try again later");
+            }
         });
     }
 
@@ -68,7 +70,9 @@ export class HomeComponent implements OnInit {
             next: (page)=> {
                 this.tomorrowTasks = page.content;
             },
-            error: () => this.toastr.error("Failed to load tomorrow tasks. try again later"),
+            error: () => {
+                this.toastr.error("Failed to load tomorrow tasks. try again later");
+            }
         });
     }
 
@@ -77,7 +81,9 @@ export class HomeComponent implements OnInit {
             next: (page)=> {
                 this.allTasks = page.content;
             },
-            error: () => this.toastr.error("Failed to load all tasks. try again later"),
+            error: () => {
+                this.toastr.error("Failed to load all tasks. try again later");
+            }
         });
     }
 

@@ -21,7 +21,7 @@ export class DateRangeComponent implements OnInit {
         this.calendarWeek(new Date());
     }
 
-    calendarWeek(date: Date) {
+    public calendarWeek(date: Date) {
         const startOfWeek = this.getStartOfWeek(new Date(date));
         this.startDate = startOfWeek;
         this.endDate = new Date(startOfWeek);
@@ -57,7 +57,7 @@ export class DateRangeComponent implements OnInit {
         return result;
     }
 
-    selectDate(date: string) {
+    public selectDate(date: string) {
         this.selectedDate = date;
         this.emitSelectedDate();
     }

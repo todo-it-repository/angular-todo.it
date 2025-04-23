@@ -72,10 +72,12 @@
         <div class="w-full h-0.5 bg-amber-50 mb-8"></div>
         <div class="flex flex-row w-full gap-2">
             <app-button-task
+                (submit)="save()"
                 class="w-full"
                 title="Edit Task"
             ></app-button-task>
             <app-button-default
+                (submit)="delete()"
                 class="w-full"
                 title="Delete Task"
             ></app-button-default>
