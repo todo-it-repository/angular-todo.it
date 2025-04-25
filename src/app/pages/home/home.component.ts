@@ -53,6 +53,18 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['task', taskId]);
     }
 
+    updateTaskStatus(taskId: string, completed: boolean): void {
+        this.taskService.updateTaskStatus(taskId, completed).subscribe({
+            next: () => {
+                this.updateTaskInLists(taskId, completed);
+            },
+            error: () => {
+                this.toastr.error('Failed to update task status. Please try again.');
+                this.updateTaskInLists(taskId, !completed);
+            }
+        });
+    }
+
     loadTodayTasks() {
         this.taskService.listTodayTasks(0, 10).subscribe({
             next: (page)=> {
@@ -84,6 +96,21 @@ export class HomeComponent implements OnInit {
                 this.toastr.error("Failed to load all tasks. try again later");
             }
         });
+    }
+
+    private updateTaskInLists(taskId: string, completed: boolean): void {
+        const updateList = (list: Task[]): Task[] => {
+            return list.map(task => {
+                if (task.id === taskId) {
+                    return { ...task, completed };
+                }
+                return task;
+            });
+        };
+
+        this.todayTasks = updateList(this.todayTasks);
+        this.tomorrowTasks = updateList(this.tomorrowTasks);
+        this.allTasks = updateList(this.allTasks);
     }
 
     toggleShowAllTasksToday(isExpanded: boolean): void {

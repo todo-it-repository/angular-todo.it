@@ -19,7 +19,7 @@ export class TaskCardComponent {
     @Input() date: Date = new Date();
     @Input() priority: TaskPriority = 'LOW';
     @Input() isCompleted: boolean = false;
-    @Output() statusChange = new EventEmitter<boolean>();
+    @Output() statusChange = new EventEmitter<{id: string, completed: boolean}>();
     @Output() navigateToTask = new EventEmitter<string>();
 
     getPriorityColor(): string {
@@ -38,7 +38,7 @@ export class TaskCardComponent {
     onClick(event: Event) {
         event.stopPropagation();
         this.isCompleted = !this.isCompleted;
-        this.statusChange.emit(this.isCompleted);
+        this.statusChange.emit({ id: this.id, completed: this.isCompleted });
     }
 
     onNavigate() {

@@ -76,6 +76,16 @@ export class TaskService {
         return this.http.put<ViewTask>(this.API_URL + '/' + id, task,{ headers });
     }
 
+    updateTaskStatus(id: string, completed: boolean): Observable<ViewTask> {
+        const token = sessionStorage.getItem('auth-token');
+
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + token
+        });
+
+        return this.http.put<ViewTask>(this.API_URL + '/' + id, { completed }, { headers });
+    }
+
     delete(id: string): Observable<any> {
         const token = sessionStorage.getItem('auth-token');
 

@@ -6,20 +6,15 @@
 </header>
 <main class="">
     <div class="flex justify-between m-4">
-        <h1
-            class="text-[22px]"
-        >Progress</h1>
+        <h1 class="text-[22px]">Progress</h1>
     </div>
     <app-daily-task
         title="Daily Task"
-        daily="3/3 Task Completed"
-        progressDescription="You are almost done go ahead"
+        [tasks]="todayTasks"
     ></app-daily-task>
 
     <div class="flex justify-between m-4">
-        <h1
-            class="text-[22px]"
-        >Today's Task</h1>
+        <h1 class="text-[22px]">Today's Task</h1>
         <app-toggle-button
             [isExpanded]="showAllTodayTasks"
             [onText]="'Show Less'"
@@ -35,6 +30,8 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                [isCompleted]="task.completed"
+                (statusChange)="updateTaskStatus($event.id, $event.completed)"
                 (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
@@ -49,9 +46,7 @@
     </div>
 
     <div class="flex justify-between m-4">
-        <h1
-            class="text-[22px]"
-        >Tomorrow Task</h1>
+        <h1 class="text-[22px]">Tomorrow Task</h1>
         <app-toggle-button
             [isExpanded]="showAllTomorrowTasks"
             [onText]="'Show Less'"
@@ -67,6 +62,8 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                [isCompleted]="task.completed"
+                (statusChange)="updateTaskStatus($event.id, $event.completed)"
                 (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
@@ -81,9 +78,7 @@
     </div>
 
     <div class="flex justify-between m-4">
-        <h1
-            class="text-[22px]"
-        >All Tasks</h1>
+        <h1 class="text-[22px]">All Tasks</h1>
         <app-toggle-button
             [isExpanded]="showAllTasks"
             [onText]="'Show Less'"
@@ -99,6 +94,8 @@
                 [title]="task.title"
                 [date]="task.startAt"
                 [priority]="task.priority"
+                [isCompleted]="task.completed"
+                (statusChange)="updateTaskStatus($event.id, $event.completed)"
                 (navigateToTask)="navigateToTask($event)"
             >
             </app-task-card>
