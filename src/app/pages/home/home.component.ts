@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
     showAllTasks: boolean = false;
     showAllTodayTasks: boolean = false;
     showAllTomorrowTasks: boolean = false;
+    headerTitle: string = '';
 
     constructor(
         private router: Router,
@@ -43,6 +44,19 @@ export class HomeComponent implements OnInit {
         this.loadTodayTasks();
         this.loadTomorrowTasks();
         this.listAllTasks();
+    }
+
+    private updateHeaderTitle(): void {
+        const allIncompleteTasks = [
+            ...this.todayTasks,
+            ...this.tomorrowTasks,
+            ...this.allTasks
+        ].filter((task, index, self) =>
+            index === self.findIndex(t => t.id === task.id) &&
+            !task.completed
+        ).length;
+
+        this.headerTitle = 'You have got ' + allIncompleteTasks + (allIncompleteTasks === 1 ? ' task ' : ' tasks ') + 'today to complete';
     }
 
     navigate() {
@@ -69,6 +83,7 @@ export class HomeComponent implements OnInit {
         this.taskService.listTodayTasks(0, 10).subscribe({
             next: (page)=> {
                 this.todayTasks = page.content;
+                this.updateHeaderTitle();
             },
             error: () => {
                 this.toastr.error("Failed to load today tasks. try again later");
@@ -80,6 +95,7 @@ export class HomeComponent implements OnInit {
         this.taskService.listTomorrowTasks(0, 10).subscribe({
             next: (page)=> {
                 this.tomorrowTasks = page.content;
+                this.updateHeaderTitle();
             },
             error: () => {
                 this.toastr.error("Failed to load tomorrow tasks. try again later");
@@ -91,6 +107,7 @@ export class HomeComponent implements OnInit {
         this.taskService.list(0, 15).subscribe({
             next: (page)=> {
                 this.allTasks = page.content;
+                this.updateHeaderTitle();
             },
             error: () => {
                 this.toastr.error("Failed to load all tasks. try again later");
@@ -111,6 +128,7 @@ export class HomeComponent implements OnInit {
         this.todayTasks = updateList(this.todayTasks);
         this.tomorrowTasks = updateList(this.tomorrowTasks);
         this.allTasks = updateList(this.allTasks);
+        this.updateHeaderTitle();
     }
 
     toggleShowAllTasksToday(isExpanded: boolean): void {
