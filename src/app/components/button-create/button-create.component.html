@@ -1,9 +1,10 @@
 <button
-    class="flex items-center justify-center fixed z-10 w-[71px] h-[71px] rounded-full border-none cursor-pointer bg-gradient-to-br from-purple to-pink bottom-10 right-7 hover:scale-105 transition-transform md:bottom-10 md:right-10 lg:right-[calc((100vw-896px)/2+2rem)]"
+    class="flex items-center justify-center fixed z-10 w-[71px] h-[71px] rounded-full border-none cursor-pointer bg-gradient-to-br hover:bg-gradient-to-bl from-purple to-pink bottom-10 right-7 active:translate-y-0.5 transition-all duration-300 ease-in-out hover:rotate-360 md:bottom-10 md:right-10 lg:right-[calc((100vw-896px)/2+2rem)]"
     (click)="navigate()"
 >
     <img
         src="/assets/svg/add-icon.svg"
         alt="+"
+        class="w-6 h-6 transition-transform duration-300 hover:rotate-180"
     >
 </button>

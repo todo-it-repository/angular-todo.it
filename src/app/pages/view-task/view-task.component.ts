@@ -92,12 +92,7 @@ export class ViewTaskComponent implements OnInit {
     }
 
     onDateSelected(date: Date) {
-        if (this.dateTimeService.isDateInPast(date)) {
-            this.toastr.warning('Selected date cannot be in the past');
-            return;
-        }
         this.selectedDate = date;
-
         this.updateDateTime();
     }
 
