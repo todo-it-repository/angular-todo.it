@@ -18,8 +18,7 @@ interface ForgotPasswordForm {
     ReactiveFormsModule,
     InputFormComponent
     ],
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.css'
+  templateUrl: './forgot-password.component.html'
 })
 export class ForgotPasswordComponent {
     forgotPasswordForm: FormGroup<ForgotPasswordForm>;
@@ -38,7 +37,7 @@ export class ForgotPasswordComponent {
     }
 
     submit() {
-        
+
     }
 
     goBack() {

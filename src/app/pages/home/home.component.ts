@@ -21,8 +21,7 @@ import { TaskService } from '../../services/task.service';
         TaskCardComponent,
         ToggleButtonComponent
     ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css'
+    templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
     allTasks: Task[] = [];

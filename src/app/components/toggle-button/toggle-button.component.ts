@@ -3,8 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'app-toggle-button',
     imports: [],
-    templateUrl: './toggle-button.component.html',
-    styleUrl: './toggle-button.component.css'
+    templateUrl: './toggle-button.component.html'
 })
 export class ToggleButtonComponent {
     @Input() isExpanded: boolean = false;

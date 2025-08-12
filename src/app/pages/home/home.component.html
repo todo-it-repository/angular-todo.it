@@ -8,10 +8,7 @@
     <div class="flex justify-between m-4">
         <h1 class="text-[22px]">Progress</h1>
     </div>
-    <app-daily-task
-        title="Daily Task"
-        [tasks]="todayTasks"
-    ></app-daily-task>
+    <app-daily-task title="Daily Task" [tasks]="todayTasks"></app-daily-task>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 m-4">
         <section>
             <div class="flex justify-between items-baseline mb-4">
@@ -26,20 +23,30 @@
             <div class="flex flex-col gap-4">
                 <ng-container *ngIf="todayTasks.length > 0; else noTasksToday">
                     <app-task-card
-                        *ngFor="let task of (showAllTodayTasks ? todayTasks : todayTasks.slice(0, 3))"
+                        *ngFor="
+                            let task of showAllTodayTasks
+                                ? todayTasks
+                                : todayTasks.slice(0, 3)
+                        "
                         [id]="task.id"
                         [title]="task.title"
                         [date]="task.startAt"
                         [priority]="task.priority"
                         [isCompleted]="task.completed"
-                        (statusChange)="updateTaskStatus($event.id, $event.completed)"
+                        (statusChange)="
+                            updateTaskStatus($event.id, $event.completed)
+                        "
                         (navigateToTask)="navigateToTask($event)"
                     >
                     </app-task-card>
                 </ng-container>
                 <ng-template #noTasksToday>
-                    <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
-                        <span class="text-lg opacity-60">No tasks for today...</span>
+                    <div
+                        class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
+                    >
+                        <span class="text-lg opacity-60"
+                            >No tasks for today...</span
+                        >
                     </div>
                 </ng-template>
             </div>
@@ -56,22 +63,34 @@
                 ></app-toggle-button>
             </div>
             <div class="flex flex-col gap-4">
-                <ng-container *ngIf="tomorrowTasks.length > 0; else noTasksTomorrow">
+                <ng-container
+                    *ngIf="tomorrowTasks.length > 0; else noTasksTomorrow"
+                >
                     <app-task-card
-                        *ngFor="let task of (showAllTomorrowTasks ? tomorrowTasks : tomorrowTasks.slice(0, 3))"
+                        *ngFor="
+                            let task of showAllTomorrowTasks
+                                ? tomorrowTasks
+                                : tomorrowTasks.slice(0, 3)
+                        "
                         [id]="task.id"
                         [title]="task.title"
                         [date]="task.startAt"
                         [priority]="task.priority"
                         [isCompleted]="task.completed"
-                        (statusChange)="updateTaskStatus($event.id, $event.completed)"
+                        (statusChange)="
+                            updateTaskStatus($event.id, $event.completed)
+                        "
                         (navigateToTask)="navigateToTask($event)"
                     >
                     </app-task-card>
                 </ng-container>
                 <ng-template #noTasksTomorrow>
-                    <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
-                        <span class="text-lg opacity-60">No tasks to do tomorrow...</span>
+                    <div
+                        class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
+                    >
+                        <span class="text-lg opacity-60"
+                            >No tasks to do tomorrow...</span
+                        >
                     </div>
                 </ng-template>
             </div>
@@ -91,26 +110,34 @@
         <div class="flex flex-col gap-4">
             <ng-container *ngIf="allTasks.length > 0; else noTasks">
                 <app-task-card
-                    *ngFor="let task of (showAllTasks ? allTasks : allTasks.slice(0, 3))"
+                    *ngFor="
+                        let task of showAllTasks
+                            ? allTasks
+                            : allTasks.slice(0, 3)
+                    "
                     [id]="task.id"
                     [title]="task.title"
                     [date]="task.startAt"
                     [priority]="task.priority"
                     [isCompleted]="task.completed"
-                    (statusChange)="updateTaskStatus($event.id, $event.completed)"
+                    (statusChange)="
+                        updateTaskStatus($event.id, $event.completed)
+                    "
                     (navigateToTask)="navigateToTask($event)"
                 >
                 </app-task-card>
             </ng-container>
             <ng-template #noTasks>
-                <div class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg">
-                    <span class="text-lg opacity-60">Your tasks will appear here</span>
+                <div
+                    class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
+                >
+                    <span class="text-lg opacity-60"
+                        >Your tasks will appear here</span
+                    >
                 </div>
             </ng-template>
         </div>
     </section>
 
-    <app-button-create
-        (navigate)="navigate()"
-    ></app-button-create>
+    <app-button-create (navigate)="navigate()"></app-button-create>
 </main>

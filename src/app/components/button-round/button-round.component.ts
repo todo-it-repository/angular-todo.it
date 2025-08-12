@@ -3,8 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-button-round',
   imports: [],
-  templateUrl: './button-round.component.html',
-  styleUrl: './button-round.component.css'
+  templateUrl: './button-round.component.html'
 })
 export class ButtonRoundComponent {
     @Input() image: string = '';

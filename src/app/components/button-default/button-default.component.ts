@@ -3,8 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-button-default',
   imports: [],
-  templateUrl: './button-default.component.html',
-  styleUrl: './button-default.component.css'
+  templateUrl: './button-default.component.html'
 })
 export class ButtonDefaultComponent {
     @Input() title: string = '';

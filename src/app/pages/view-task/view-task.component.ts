@@ -35,8 +35,7 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
         ButtonTaskComponent,
         ButtonDefaultComponent
     ],
-    templateUrl: './view-task.component.html',
-    styleUrl: './view-task.component.css'
+    templateUrl: './view-task.component.html'
 })
 export class ViewTaskComponent implements OnInit {
     taskForm!: FormGroup<TaskForm>;

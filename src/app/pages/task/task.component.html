@@ -1,11 +1,10 @@
 <div class="container min-h-screen md:max-w-4xl md:mx-auto">
     <header class="relative flex items-center w-full">
-        <button class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer" (click)="goBack()">
-            <img
-                class="w-8 h-8"
-                src="/assets/svg/back-icon.svg"
-                alt="Back"
-            >
+        <button
+            class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
+            (click)="goBack()"
+        >
+            <img class="w-8 h-8" src="/assets/svg/back-icon.svg" alt="Back" />
         </button>
 
         <div class="flex-grow text-center m-4">
@@ -14,10 +13,7 @@
             </h1>
         </div>
     </header>
-    <form
-        [formGroup]="taskForm"
-        class="flex flex-col w-full"
-    >
+    <form [formGroup]="taskForm" class="flex flex-col w-full">
         <app-date-range
             (dateSelected)="onDateSelected($event)"
         ></app-date-range>
@@ -38,14 +34,13 @@
         ></app-time-box>
 
         <section class="flex flex-col m-4">
-            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">
-                Priority
-            </h1>
+            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">Priority</h1>
 
             <div class="flex justify-between w-full">
                 <app-priority
                     title="High"
-                    priority="HIGH" [isSelected]="selectedPriority === 'HIGH'"
+                    priority="HIGH"
+                    [isSelected]="selectedPriority === 'HIGH'"
                     (priorityChange)="setPriority($event)"
                 ></app-priority>
                 <app-priority
@@ -63,7 +58,7 @@
             </div>
         </section>
 
-        <section class="flex flex-col m-4 ">
+        <section class="flex flex-col m-4">
             <div class="w-full h-0.5 bg-amber-50 mb-8"></div>
             <app-button-task
                 title="Create Task"

@@ -1,4 +1,6 @@
-<header class="flex items-center justify-between w-full md:max-w-4xl md:mx-auto mt-6 mb-4">
+<header
+    class="flex items-center justify-between w-full md:max-w-4xl md:mx-auto mt-6 mb-4"
+>
     <div class="flex items-center w-72 h-24 ml-4">
         <h1 class="text-2xl font-semibold">
             {{ title }}
@@ -11,19 +13,21 @@
     ></app-button-round>
 </header>
 
-<div class="flex justify-center items-center w-full md:max-w-4xl md:mx-auto -mt-2">
+<div
+    class="flex justify-center items-center w-full md:max-w-4xl md:mx-auto -mt-2"
+>
     <div class="relative w-full ml-4 mr-4">
         <img
             src="/assets/svg/search.svg"
             alt="Search btn"
             class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
-        >
+        />
         <input
             class="w-full pl-10 p-4 font-light rounded-lg focus:outline-none bg-midnight placeholder-white"
             type="search"
             [placeholder]="isFocused ? '' : placeholder"
             (focus)="onFocus()"
             (blur)="onBlur()"
-        >
+        />
     </div>
 </div>

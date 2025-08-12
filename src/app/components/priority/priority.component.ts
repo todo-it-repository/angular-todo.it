@@ -8,8 +8,7 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
     imports: [
         CommonModule
     ],
-    templateUrl: './priority.component.html',
-    styleUrl: './priority.component.css'
+    templateUrl: './priority.component.html'
 })
 export class PriorityComponent {
     @Input() title: string = '';

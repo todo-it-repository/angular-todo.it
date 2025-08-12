@@ -4,11 +4,7 @@
             class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer"
             (click)="goBack()"
         >
-            <img
-                class="w-8 h-8"
-                src="/assets/svg/back-icon.svg"
-                alt="Back"
-            >
+            <img class="w-8 h-8" src="/assets/svg/back-icon.svg" alt="Back" />
         </button>
 
         <div class="flex-grow text-center m-4 px-12">
@@ -17,10 +13,7 @@
             </h1>
         </div>
     </header>
-    <form
-        [formGroup]="taskForm"
-        class="flex flex-col w-full"
-    >
+    <form [formGroup]="taskForm" class="flex flex-col w-full">
         <app-date-range
             (dateSelected)="onDateSelected($event)"
         ></app-date-range>
@@ -43,9 +36,7 @@
         ></app-time-box>
 
         <section class="flex flex-col m-4">
-            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">
-                Priority
-            </h1>
+            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">Priority</h1>
 
             <div class="flex justify-between w-full">
                 <app-priority
@@ -86,5 +77,3 @@
         </section>
     </form>
 </div>
-
-

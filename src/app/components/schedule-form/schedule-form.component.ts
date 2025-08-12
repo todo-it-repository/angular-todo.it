@@ -9,8 +9,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         CommonModule
     ],
-    templateUrl: './schedule-form.component.html',
-    styleUrl: './schedule-form.component.css'
+    templateUrl: './schedule-form.component.html'
 })
 export class ScheduleFormComponent {
     @Input() form!: FormGroup;

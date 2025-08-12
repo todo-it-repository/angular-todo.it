@@ -1,11 +1,8 @@
 <div
-    class=" flex flex-row items-center rounded-lg w-full h-20 bg-midnightlight cursor-pointer"
+    class="flex flex-row items-center rounded-lg w-full h-20 bg-midnightlight cursor-pointer"
     (click)="onNavigate()"
 >
-    <div
-        class=" rounded-l-lg w-3 h-full"
-        [ngClass]="getPriorityColor()"
-    ></div>
+    <div class="rounded-l-lg w-3 h-full" [ngClass]="getPriorityColor()"></div>
 
     <div class="flex flex-col justify-center flex-grow ml-4">
         <div class="font- text-base">
@@ -16,7 +13,7 @@
                 class="mr-1.5"
                 src="/assets/svg/calendar-icon.svg"
                 alt="Calendar"
-            >
+            />
             <span class="text-sm font-light">
                 {{ date }}
             </span>
@@ -27,9 +24,13 @@
         type="button"
         (click)="onClick($event)"
     >
-    <img
-        [src]="isCompleted ? '/assets/svg/check-icon.svg' : '/assets/svg/circle-icon.svg'"
-        [alt]="isCompleted ? 'Completed' : 'Not completed'"
-    >
+        <img
+            [src]="
+                isCompleted
+                    ? '/assets/svg/check-icon.svg'
+                    : '/assets/svg/circle-icon.svg'
+            "
+            [alt]="isCompleted ? 'Completed' : 'Not completed'"
+        />
     </button>
 </div>

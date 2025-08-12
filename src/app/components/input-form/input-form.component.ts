@@ -15,8 +15,7 @@ type InputTypes = 'text' | 'password' | 'login';
             multi: true
         }
     ],
-    templateUrl: './input-form.component.html',
-    styleUrl: './input-form.component.css'
+    templateUrl: './input-form.component.html'
 })
 export class InputFormComponent implements ControlValueAccessor {
     @Input() type: InputTypes = 'text';

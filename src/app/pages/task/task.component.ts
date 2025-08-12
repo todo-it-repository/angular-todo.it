@@ -32,8 +32,7 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
     ReactiveFormsModule,
     ButtonTaskComponent
 ],
-    templateUrl: './task.component.html',
-    styleUrl: './task.component.css'
+    templateUrl: './task.component.html'
 })
 export class TaskComponent implements OnInit {
     taskForm: FormGroup<TaskForm>;

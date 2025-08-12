@@ -1,21 +1,15 @@
 <section class="flex flex-col m-4">
     <div class="flex items-center justify-between">
         <button class="cursor-pointer" (click)="previousWeek()">
-            <img
-                src="/assets/svg/arrow-left.svg"
-                alt="Previous"
-            >
+            <img src="/assets/svg/arrow-left.svg" alt="Previous" />
         </button>
 
         <span class="text-xl font-normal text-purple">
-            {{ startDate | date: 'dd MMM' }} - {{ endDate | date: 'dd MMM' }}
+            {{ startDate | date : "dd MMM" }} - {{ endDate | date : "dd MMM" }}
         </span>
 
         <button class="cursor-pointer" (click)="nextWeek()">
-            <img
-                src="/assets/svg/arrow-right.svg"
-                alt="Next"
-            >
+            <img src="/assets/svg/arrow-right.svg" alt="Next" />
         </button>
     </div>
 
@@ -43,4 +37,3 @@
         </div>
     </div>
 </section>
-
