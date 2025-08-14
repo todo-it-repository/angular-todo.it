@@ -5,11 +5,9 @@ type TaskPriority = 'LOW' | 'MEDIUM' | 'HIGH';
 
 @Component({
     selector: 'app-task-card',
-    imports: [
-        CommonModule
-    ],
+    imports: [CommonModule],
     templateUrl: './task-card.component.html',
-    styleUrl: './task-card.component.css'
+    styleUrl: './task-card.component.css',
 })
 export class TaskCardComponent {
     @Input() id: string = '';
@@ -19,7 +17,10 @@ export class TaskCardComponent {
     @Input() date: Date = new Date();
     @Input() priority: TaskPriority = 'LOW';
     @Input() isCompleted: boolean = false;
-    @Output() statusChange = new EventEmitter<{id: string, completed: boolean}>();
+    @Output() statusChange = new EventEmitter<{
+        id: string;
+        completed: boolean;
+    }>();
     @Output() navigateToTask = new EventEmitter<string>();
 
     getPriorityColor(): string {

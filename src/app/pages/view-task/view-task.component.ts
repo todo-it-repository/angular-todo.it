@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 import { ButtonDefaultComponent } from '../../components/button-default/button-default.component';
 import { ButtonTaskComponent } from '../../components/button-task/button-task.component';
@@ -11,15 +10,16 @@ import { ScheduleFormComponent } from '../../components/schedule-form/schedule-f
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
 import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface TaskForm {
-    id: FormControl,
-    userId: FormControl,
-    title: FormControl,
-    description: FormControl,
-    startAt: FormControl,
-    endAt: FormControl,
-    priority: FormControl
+    id: FormControl;
+    userId: FormControl;
+    title: FormControl;
+    description: FormControl;
+    startAt: FormControl;
+    endAt: FormControl;
+    priority: FormControl;
 }
 
 type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
@@ -33,9 +33,10 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
         ScheduleFormComponent,
         DateRangeComponent,
         ButtonTaskComponent,
-        ButtonDefaultComponent
+        ButtonDefaultComponent,
+        TranslatePipe,
     ],
-    templateUrl: './view-task.component.html'
+    templateUrl: './view-task.component.html',
 })
 export class ViewTaskComponent implements OnInit {
     taskForm!: FormGroup<TaskForm>;
@@ -51,11 +52,8 @@ export class ViewTaskComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private taskService: TaskService,
-        private toastr: ToastrService,
         private dateTimeService: DateTimeService
-    ) {
-
-    }
+    ) {}
 
     ngOnInit() {
         this.taskForm = new FormGroup<TaskForm>({
@@ -65,9 +63,11 @@ export class ViewTaskComponent implements OnInit {
             description: new FormControl('', { nonNullable: true }),
             startAt: new FormControl(new Date(), { nonNullable: true }),
             endAt: new FormControl(new Date(), { nonNullable: true }),
-            priority: new FormControl('LOW' as InputPriorityTypes, { nonNullable: true })
+            priority: new FormControl('LOW' as InputPriorityTypes, {
+                nonNullable: true,
+            }),
         });
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((params) => {
             if (params['id']) {
                 this.taskId = params['id'];
                 this.loadTask();
@@ -86,7 +86,7 @@ export class ViewTaskComponent implements OnInit {
     setPriority(priority: InputPriorityTypes): void {
         this.selectedPriority = priority;
         this.taskForm.patchValue({
-            priority: priority
+            priority: priority,
         });
     }
 
@@ -97,20 +97,26 @@ export class ViewTaskComponent implements OnInit {
 
     updateDateTime() {
         if (this.startTime && this.endTime) {
-            const startDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.startTime);
-            const endDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.endTime);
+            const startDateTime = this.dateTimeService.formatDateTime(
+                this.selectedDate,
+                this.startTime
+            );
+            const endDateTime = this.dateTimeService.formatDateTime(
+                this.selectedDate,
+                this.endTime
+            );
 
             this.taskForm.patchValue({
                 startAt: startDateTime,
-                endAt: endDateTime
+                endAt: endDateTime,
             });
         }
     }
 
-    onDateTimeUpdate(dateTime: {startAt: string, endAt: string}) {
+    onDateTimeUpdate(dateTime: { startAt: string; endAt: string }) {
         this.taskForm.patchValue({
             startAt: dateTime.startAt,
-            endAt: dateTime.endAt
+            endAt: dateTime.endAt,
         });
     }
 
@@ -140,12 +146,10 @@ export class ViewTaskComponent implements OnInit {
                     description: task.description,
                     startAt: task.startAt,
                     endAt: task.endAt,
-                    priority: task.priority
+                    priority: task.priority,
                 });
             },
-            error: (error) => {
-                this.toastr.error('Error loading task: ' + error.message);
-            }
+            error: (error) => {},
         });
     }
 
@@ -167,29 +171,23 @@ export class ViewTaskComponent implements OnInit {
             description: this.taskForm.get('description')?.value,
             startAt: this.taskForm.get('startAt')?.value,
             endAt: this.taskForm.get('endAt')?.value,
-            priority: this.taskForm.get('priority')?.value
+            priority: this.taskForm.get('priority')?.value,
         };
 
         this.taskService.update(this.taskId, updatedTask).subscribe({
             next: () => {
-                this.toastr.success('Task updated successfully');
                 this.router.navigate(['/home']);
             },
-            error: (error) => {
-                this.toastr.error('Error updating task: ' + error.message);
-            }
+            error: (error) => {},
         });
     }
 
     delete() {
         this.taskService.delete(this.taskId).subscribe({
             next: () => {
-                this.toastr.success('Task deleted successfully');
                 this.router.navigate(['/home']);
             },
-            error: (error) => {
-                this.toastr.error('Error deleting task: ' + error.message);
-            }
+            error: (error) => {},
         });
     }
 }

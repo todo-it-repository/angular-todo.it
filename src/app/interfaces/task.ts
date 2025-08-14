@@ -5,6 +5,6 @@ export interface Task {
     description: string;
     startAt: Date;
     endAt: Date;
-    priority: "LOW" | "MEDIUM" | "HIGH";
+    priority: 'LOW' | 'MEDIUM' | 'HIGH';
     completed: boolean;
 }

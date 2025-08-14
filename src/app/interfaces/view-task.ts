@@ -5,5 +5,5 @@ export interface ViewTask {
     description: string;
     startAt: string;
     endAt: string;
-    priority: "LOW" | "MEDIUM" | "HIGH";
+    priority: 'LOW' | 'MEDIUM' | 'HIGH';
 }

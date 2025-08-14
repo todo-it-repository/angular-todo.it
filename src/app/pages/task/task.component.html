@@ -9,7 +9,7 @@
 
         <div class="flex-grow text-center m-4">
             <h1 class="text-2xl font-normal inline-block">
-                {{ title }}
+                {{ 'task.title' | translate }}
             </h1>
         </div>
     </header>
@@ -18,13 +18,16 @@
             (dateSelected)="onDateSelected($event)"
         ></app-date-range>
         <app-schedule-form
+            [title]="'task.forms.title' | translate"
             [form]="taskForm"
-            placeholderName="Name"
-            placeholderDescription="Description"
+            [placeholderName]="'task.forms.placeholderName' | translate"
+            [placeholderDescription]="
+                'task.forms.placeholderDescription' | translate
+            "
         ></app-schedule-form>
         <app-time-box
-            titleStart="Start Time"
-            titleEnd="End Time"
+            [titleStart]="'task.forms.titleStart' | translate"
+            [titleEnd]="'task.forms.titleEnd' | translate"
             [startTime]="startTime"
             [endTime]="endTime"
             [selectedDate]="selectedDate"
@@ -34,23 +37,25 @@
         ></app-time-box>
 
         <section class="flex flex-col m-4">
-            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">Priority</h1>
+            <h1 class="font-['Inter'] text-xl opacity-80 mb-2">
+                {{ 'task.forms.priority.title' | translate }}
+            </h1>
 
             <div class="flex justify-between w-full">
                 <app-priority
-                    title="High"
+                    [title]="'task.forms.priority.btns.high' | translate"
                     priority="HIGH"
                     [isSelected]="selectedPriority === 'HIGH'"
                     (priorityChange)="setPriority($event)"
                 ></app-priority>
                 <app-priority
-                    title="Medium"
+                    [title]="'task.forms.priority.btns.medium' | translate"
                     priority="MEDIUM"
                     [isSelected]="selectedPriority === 'MEDIUM'"
                     (priorityChange)="setPriority($event)"
                 ></app-priority>
                 <app-priority
-                    title="Low"
+                    [title]="'task.forms.priority.btns.low' | translate"
                     priority="LOW"
                     [isSelected]="selectedPriority === 'LOW'"
                     (priorityChange)="setPriority($event)"
@@ -61,7 +66,7 @@
         <section class="flex flex-col m-4">
             <div class="w-full h-0.5 bg-amber-50 mb-8"></div>
             <app-button-task
-                title="Create Task"
+                [title]="'task.forms.priority.btns.confirm' | translate"
                 (submit)="submit()"
             ></app-button-task>
         </section>

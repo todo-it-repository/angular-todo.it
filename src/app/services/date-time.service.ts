@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class DateTimeService {
     formatTime(date: Date): string {
         return date.toTimeString().substring(0, 5);
@@ -49,7 +48,11 @@ export class DateTimeService {
         return selectedDateTime < currentDate;
     }
 
-    isEndTimeBeforeStart(startTime: string, endTime: string, date: Date): boolean {
+    isEndTimeBeforeStart(
+        startTime: string,
+        endTime: string,
+        date: Date
+    ): boolean {
         const startDateTime = this.createDateTime(date, startTime);
         const endDateTime = this.createDateTime(date, endTime);
         return endDateTime <= startDateTime;

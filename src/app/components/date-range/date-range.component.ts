@@ -1,21 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-date-range',
-    imports: [
-        CommonModule
-    ],
+    imports: [CommonModule],
     templateUrl: './date-range.component.html',
-    styleUrl: './date-range.component.css'
+    styleUrl: './date-range.component.css',
 })
 export class DateRangeComponent implements OnInit {
+    @Output() dateSelected = new EventEmitter<Date>();
+
+    weekDays: { name: string; day: number; date: string }[] = [];
+    selectedDate!: string;
     startDate!: Date;
     endDate!: Date;
-    selectedDate!: string;
-    weekDays: { name: string; day: number; date: string }[] = [];
 
-    @Output() dateSelected = new EventEmitter<Date>();
+    formattedStartDate!: string;
+    formattedEndDate!: string;
+
+    constructor(private translate: TranslateService) {}
 
     ngOnInit() {
         this.calendarWeek(new Date());
@@ -27,18 +31,27 @@ export class DateRangeComponent implements OnInit {
         this.endDate = new Date(startOfWeek);
         this.endDate.setDate(this.endDate.getDate() + 6);
 
+        const locale = this.translate.instant('components.date-range.locale');
+        this.formattedStartDate = this.startDate.toLocaleDateString(locale, {
+            day: '2-digit',
+            month: 'short',
+        });
+        this.formattedEndDate = this.endDate.toLocaleDateString(locale, {
+            day: '2-digit',
+            month: 'short',
+        });
         this.weekDays = Array.from({ length: 7 }).map((_, index) => {
             const dayDate = new Date(startOfWeek);
             dayDate.setDate(dayDate.getDate() + index);
             return {
-                name: dayDate.toLocaleDateString('en-US', { weekday: 'short' }),
+                name: dayDate.toLocaleDateString(locale, { weekday: 'short' }),
                 day: dayDate.getDate(),
-                date: dayDate.toISOString().split('T')[0]
+                date: dayDate.toISOString().split('T')[0],
             };
         });
 
         const today = new Date().toISOString().split('T')[0];
-        const dayInWeek = this.weekDays.find(day => day.date === today);
+        const dayInWeek = this.weekDays.find((day) => day.date === today);
 
         if (dayInWeek) {
             this.selectedDate = today;

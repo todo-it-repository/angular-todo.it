@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateTimeService } from '../../services/date-time.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-time-box',
-    imports: [
-        FormsModule
-    ],
+    imports: [FormsModule],
     templateUrl: './time-box.component.html',
-    styleUrl: './time-box.component.css'
+    styleUrl: './time-box.component.css',
 })
 export class TimeBoxComponent {
     @Input() titleStart: string = '';
@@ -20,23 +17,31 @@ export class TimeBoxComponent {
 
     @Output() startTimeChange = new EventEmitter<string>();
     @Output() endTimeChange = new EventEmitter<string>();
-    @Output() dateTimeUpdate = new EventEmitter<{startAt: string, endAt: string}>();
+    @Output() dateTimeUpdate = new EventEmitter<{
+        startAt: string;
+        endAt: string;
+    }>();
 
-    constructor(
-        private dateTimeService: DateTimeService,
-        private toastr: ToastrService
-    ) {}
+    constructor(private dateTimeService: DateTimeService) {}
 
     onStartTimeChange() {
         if (this.dateTimeService.isTimeInPast(this.startTime)) {
-            this.toastr.warning('Start time cannot be in the past');
             this.startTime = this.dateTimeService.formatTime(new Date());
             return;
         }
 
-        if (this.dateTimeService.isEndTimeBeforeStart(this.startTime, this.endTime, this.selectedDate)) {
+        if (
+            this.dateTimeService.isEndTimeBeforeStart(
+                this.startTime,
+                this.endTime,
+                this.selectedDate
+            )
+        ) {
             this.endTime = this.dateTimeService.addMinutes(
-                this.dateTimeService.createDateTime(this.selectedDate, this.startTime),
+                this.dateTimeService.createDateTime(
+                    this.selectedDate,
+                    this.startTime
+                ),
                 30
             );
         }
@@ -46,10 +51,18 @@ export class TimeBoxComponent {
     }
 
     onEndTimeChange() {
-        if (this.dateTimeService.isEndTimeBeforeStart(this.startTime, this.endTime, this.selectedDate)) {
-            this.toastr.warning('End time must be after start time');
+        if (
+            this.dateTimeService.isEndTimeBeforeStart(
+                this.startTime,
+                this.endTime,
+                this.selectedDate
+            )
+        ) {
             this.endTime = this.dateTimeService.addMinutes(
-                this.dateTimeService.createDateTime(this.selectedDate, this.startTime),
+                this.dateTimeService.createDateTime(
+                    this.selectedDate,
+                    this.startTime
+                ),
                 30
             );
             return;
@@ -60,12 +73,18 @@ export class TimeBoxComponent {
     }
 
     private updateDateTime() {
-        const startDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.startTime);
-        const endDateTime = this.dateTimeService.formatDateTime(this.selectedDate, this.endTime);
+        const startDateTime = this.dateTimeService.formatDateTime(
+            this.selectedDate,
+            this.startTime
+        );
+        const endDateTime = this.dateTimeService.formatDateTime(
+            this.selectedDate,
+            this.endTime
+        );
 
         this.dateTimeUpdate.emit({
             startAt: startDateTime,
-            endAt: endDateTime
+            endAt: endDateTime,
         });
     }
 }

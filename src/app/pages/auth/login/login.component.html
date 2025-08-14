@@ -1,7 +1,7 @@
 <app-default-login
-    title="Login into your account"
-    primaryBtnText="Login now"
-    secondaryBtnText="Sign up now"
+    [title]="'login.title' | translate"
+    [primaryBtnText]="'login.primaryBtnText' | translate"
+    [secondaryBtnText]="'login.secondaryBtnText' | translate"
     (submit)="submit()"
     (navigate)="navigate()"
     [primaryBtnDisabled]="!loginForm.valid"
@@ -11,7 +11,7 @@
             formControlName="login"
             inputName="login"
             type="login"
-            placeholder="Enter your username or email"
+            [placeholder]="'login.emailPlaceholder' | translate"
         >
             <img class="w-9 h-8" src="/assets/svg/user-icon.svg" alt="User" />
         </app-input-form>
@@ -19,7 +19,7 @@
             formControlName="password"
             inputName="password"
             type="password"
-            placeholder="Enter your password"
+            [placeholder]="'login.passwordPlaceholder' | translate"
         >
             <img
                 class="w-9 h-8"
@@ -30,7 +30,7 @@
         <span
             class="text-sm underline text-amber-50 text-end cursor-pointer"
             (click)="navigateToForgotPassword()"
-            >Forgot password?</span
+            >{{ "login.forgot" | translate }}</span
         >
     </form>
 </app-default-login>

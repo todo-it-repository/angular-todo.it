@@ -5,7 +5,7 @@
         </button>
 
         <span class="text-xl font-normal text-purple">
-            {{ startDate | date : "dd MMM" }} - {{ endDate | date : "dd MMM" }}
+            {{ formattedStartDate }} - {{ formattedEndDate }}
         </span>
 
         <button class="cursor-pointer" (click)="nextWeek()">

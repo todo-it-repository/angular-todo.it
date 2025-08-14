@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { ButtonCreateComponent } from '../../components/button-create/button-create.component';
 import { DailyTaskComponent } from '../../components/daily-task/daily-task.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { TaskCardComponent } from '../../components/task-card/task-card.component';
 import { ToggleButtonComponent } from '../../components/toggle-button/toggle-button.component';
-import { Task } from '../../models/task';
+import { Task } from '../../interfaces/task';
 import { TaskService } from '../../services/task.service';
 
 @Component({
@@ -19,9 +19,10 @@ import { TaskService } from '../../services/task.service';
         ButtonCreateComponent,
         CommonModule,
         TaskCardComponent,
-        ToggleButtonComponent
+        ToggleButtonComponent,
+        TranslatePipe,
     ],
-    templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
     allTasks: Task[] = [];
@@ -35,9 +36,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private router: Router,
         private taskService: TaskService,
-        private toastr: ToastrService
-    ) {
-    }
+        private translate: TranslateService
+    ) {}
 
     ngOnInit(): void {
         this.loadTodayTasks();
@@ -49,13 +49,20 @@ export class HomeComponent implements OnInit {
         const allIncompleteTasks = [
             ...this.todayTasks,
             ...this.tomorrowTasks,
-            ...this.allTasks
-        ].filter((task, index, self) =>
-            index === self.findIndex(t => t.id === task.id) &&
-            !task.completed
+            ...this.allTasks,
+        ].filter(
+            (task, index, self) =>
+                index === self.findIndex((t) => t.id === task.id) &&
+                !task.completed
         ).length;
 
-        this.headerTitle = 'You have got ' + allIncompleteTasks + (allIncompleteTasks === 1 ? ' task ' : ' tasks ') + 'today to complete';
+        this.headerTitle =
+            this.translate.instant('home.header.titlePrimary') +
+            allIncompleteTasks +
+            (allIncompleteTasks === 1
+                ? this.translate.instant('home.header.task')
+                : this.translate.instant('home.header.tasks')) +
+            this.translate.instant('home.header.titleSecondary');
     }
 
     navigate() {
@@ -72,51 +79,42 @@ export class HomeComponent implements OnInit {
                 this.updateTaskInLists(taskId, completed);
             },
             error: () => {
-                this.toastr.error('Failed to update task status. Please try again.');
                 this.updateTaskInLists(taskId, !completed);
-            }
+            },
         });
     }
 
     loadTodayTasks() {
         this.taskService.listTodayTasks(0, 10).subscribe({
-            next: (page)=> {
+            next: (page) => {
                 this.todayTasks = page.content;
                 this.updateHeaderTitle();
             },
-            error: () => {
-                this.toastr.error("Failed to load today tasks. try again later");
-            }
         });
     }
 
     loadTomorrowTasks() {
         this.taskService.listTomorrowTasks(0, 10).subscribe({
-            next: (page)=> {
+            next: (page) => {
                 this.tomorrowTasks = page.content;
                 this.updateHeaderTitle();
             },
-            error: () => {
-                this.toastr.error("Failed to load tomorrow tasks. try again later");
-            }
         });
     }
 
     listAllTasks() {
         this.taskService.list(0, 15).subscribe({
-            next: (page)=> {
+            next: (page) => {
                 this.allTasks = page.content;
                 this.updateHeaderTitle();
             },
-            error: () => {
-                this.toastr.error("Failed to load all tasks. try again later");
-            }
+            error: () => {},
         });
     }
 
     private updateTaskInLists(taskId: string, completed: boolean): void {
         const updateList = (list: Task[]): Task[] => {
-            return list.map(task => {
+            return list.map((task) => {
                 if (task.id === taskId) {
                     return { ...task, completed };
                 }

@@ -1,0 +1,86 @@
+{
+    "login": {
+        "title": "Login into your account",
+        "mainTitle": "Manage your tasks simply!",
+        "primaryBtnText": "Login now",
+        "or": "or",
+        "secondaryBtnText": "Sign up now",
+        "emailPlaceholder": "Enter your username or email",
+        "passwordPlaceholder": "Enter your password",
+        "forgot": "Forgot password?"
+    },
+    "register": {
+        "title": "Sign in and start today",
+        "mainTitle": "Manage your tasks simply!",
+        "primaryBtnText": "Sign up now",
+        "secondaryBtnText": "Login now",
+        "namePlaceholder": "Enter your name",
+        "emailPlaceholder": "Enter your username or email",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPasswordPlaceholder": "Confirm your password",
+        "forgot": "Forgot password?"
+    },
+    "forgotPassword": {
+        "title": "Recover your password now",
+        "primaryBtnText": "Send",
+        "secondaryBtnText": "Back to login",
+        "emailPlaceholder": "Enter your email"
+    },
+    "home": {
+        "header": {
+            "search": "Search Task Here",
+            "titlePrimary": "You have got ",
+            "titleSecondary": "today to complete",
+            "task": " task ",
+            "tasks": " tasks "
+        },
+        "progress": "Progress",
+        "today": "Today's Task",
+        "btns": {
+            "less": "Show Less",
+            "all": "See All"
+        },
+        "tasks": {
+            "todayPlaceholder": "No tasks for today...",
+            "tomorrowPlaceholder": "No tasks to do tomorrow...",
+            "allTasksPlaceholder": "Your tasks will appear here"
+        }
+    },
+    "task": {
+        "title": "Create new task",
+        "forms": {
+            "title": "Schedule",
+            "placeholderName": "Name",
+            "placeholderDescription": "Description",
+            "titleStart": "Start Time",
+            "titleEnd": "End Time",
+            "priority": {
+                "title": "Priority",
+                "btns": {
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High",
+                    "confirm": "Create Task",
+                    "edit": "Edit Task",
+                    "delete": "Delete Task"
+                }
+            }
+        }
+    },
+    "components": {
+        "dailyTasks": {
+            "title": "Daily Task",
+            "completed": " Task Completed",
+            "progress": {
+                "allCompleted": "All tasks completed!",
+                "almostDone": "You are almost done, go ahead!",
+                "goodProgress": "Good progress, keep going!",
+                "justStarted": "Just getting started, you can do it!",
+                "noTasks": "No tasks completed yet"
+            }
+        },
+        "date-range": {
+            "locale": "en-US"
+        }
+    }
+}

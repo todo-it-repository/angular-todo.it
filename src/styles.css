@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import "tailwindcss";
-@import 'ngx-toastr/toastr';
+@import 'tailwindcss';
 
 @theme {
-    --color-purple: #BA83DE;
+    --color-purple: #ba83de;
     --color-black: #020206;
     --color-midnight: #181818;
-    --color-midnightlight: #1F1F1F;
-    --color-gray: #1E1E1E;
-    --color-graylight: #4F4F4F;
-    --color-beige: #FACBBA;
-    --color-ocean: #D7F0FF;
-    --color-pinklight: #FAD9FF;
-    --color-pink: #DE83B0;
+    --color-midnightlight: #1f1f1f;
+    --color-gray: #1e1e1e;
+    --color-graylight: #4f4f4f;
+    --color-beige: #facbba;
+    --color-ocean: #d7f0ff;
+    --color-pinklight: #fad9ff;
+    --color-pink: #de83b0;
 }
 
-html, body {
+html,
+body {
     font-family: 'Roboto', sans-serif;
     background-color: #020206;
-    color: #FFFFFF;
+    color: #ffffff;
     height: auto;
 }

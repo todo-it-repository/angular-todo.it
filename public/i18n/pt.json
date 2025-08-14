@@ -1,0 +1,86 @@
+{
+    "login": {
+        "title": "Faça login na sua conta",
+        "mainTitle": "Gerencie suas tarefas com facilidade!",
+        "primaryBtnText": "Fazer login",
+        "or": "ou",
+        "secondaryBtnText": "Inscreva-se agora",
+        "emailPlaceholder": "Digite seu nome de usuário ou e-mail",
+        "passwordPlaceholder": "Digite sua senha",
+        "forgot": "Esqueceu a senha?"
+    },
+    "register": {
+        "title": "Faça login e comece hoje mesmo",
+        "mainTitle": "Gerencie suas tarefas com facilidade!",
+        "primaryBtnText": "Inscreva-se agora",
+        "secondaryBtnText": "Fazer login",
+        "namePlaceholder": "Digite o seu nome",
+        "emailPlaceholder": "Digite seu nome de usuário ou e-mail",
+        "passwordPlaceholder": "Digite a sua senha",
+        "confirmPasswordPlaceholder": "Confirme sua senha",
+        "forgot": "Esqueceu a senha?"
+    },
+    "forgotPassword": {
+        "title": "Recupere a sua senha",
+        "primaryBtnText": "Enviar",
+        "secondaryBtnText": "Voltar ao login",
+        "emailPlaceholder": "Digite o seu e-mail"
+    },
+    "home": {
+        "header": {
+            "search": "Pesquise tarefas aqui",
+            "titlePrimary": "Você tem ",
+            "titleSecondary": "hoje para concluir",
+            "task": " tarefa ",
+            "tasks": " tarefas "
+        },
+        "progress": "Progresso",
+        "today": "Tarefa de hoje",
+        "btns": {
+            "less": "Mostrar menos",
+            "all": "Ver tudo"
+        },
+        "tasks": {
+            "todayPlaceholder": "Nenhuma tarefa para hoje...",
+            "tomorrowPlaceholder": "Não há tarefas para amanhã...",
+            "allTasksPlaceholder": "Suas tarefas aparecerão aqui."
+        }
+    },
+    "task": {
+        "title": "Criar nova tarefa",
+        "forms": {
+            "title": "Agenda",
+            "placeholderName": "Nome",
+            "placeholderDescription": "Descrição",
+            "titleStart": "Hora de início",
+            "titleEnd": "Hora do fim",
+            "priority": {
+                "title": "Prioridade",
+                "btns": {
+                    "low": "Baixo",
+                    "medium": "Médio",
+                    "high": "Alta",
+                    "confirm": "Criar tarefa",
+                    "edit": "Editar tarefa",
+                    "delete": "Excluir tarefa"
+                }
+            }
+        }
+    },
+    "components": {
+        "dailyTasks": {
+            "title": "Tarefa diária",
+            "completed": " Tarefa concluída",
+            "progress": {
+                "allCompleted": "Todas as tarefas concluídas!",
+                "almostDone": "Você está quase terminando, continue!",
+                "goodProgress": "Bom progresso, continue assim!",
+                "justStarted": "Você está apenas começando, você consegue!",
+                "noTasks": "Ainda não há tarefas concluídas"
+            }
+        },
+        "date-range": {
+            "locale": "pt-BR"
+        }
+    }
+}

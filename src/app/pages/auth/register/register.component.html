@@ -1,7 +1,7 @@
 <app-default-login
-    title="Sign in and start today"
-    primaryBtnText="Sign up now"
-    secondaryBtnText="Login now"
+    [title]="'register.title' | translate"
+    [primaryBtnText]="'register.primaryBtnText' | translate"
+    [secondaryBtnText]="'register.secondaryBtnText' | translate"
     (submit)="submit()"
     (navigate)="navigate()"
     [primaryBtnDisabled]="!registerForm.valid"
@@ -11,7 +11,7 @@
             formControlName="name"
             inputName="name"
             type="text"
-            placeholder="Enter your name"
+            [placeholder]="'register.namePlaceholder' | translate"
         >
             <img class="w-9 h-8" src="/assets/svg/user-icon.svg" alt="User" />
         </app-input-form>
@@ -19,7 +19,7 @@
             formControlName="login"
             inputName="login"
             type="login"
-            placeholder="Enter your username or email"
+            [placeholder]="'register.emailPlaceholder' | translate"
         >
             <img
                 class="w-9 h-8"
@@ -31,7 +31,7 @@
             formControlName="password"
             inputName="password"
             type="password"
-            placeholder="Enter your password"
+            [placeholder]="'register.passwordPlaceholder' | translate"
         >
             <img
                 class="w-9 h-8"
@@ -43,7 +43,7 @@
             formControlName="confirmPassword"
             inputName="confirmPassword"
             type="password"
-            placeholder="Confirm your password"
+            [placeholder]="'register.confirmPasswordPlaceholder' | translate"
         >
             <img
                 class="w-9 h-8"

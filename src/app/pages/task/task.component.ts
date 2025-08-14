@@ -1,23 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 
 import { ButtonTaskComponent } from '../../components/button-task/button-task.component';
 import { DateRangeComponent } from '../../components/date-range/date-range.component';
 import { PriorityComponent } from '../../components/priority/priority.component';
 import { ScheduleFormComponent } from '../../components/schedule-form/schedule-form.component';
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
-import { CreateTask } from '../../models/create-task';
+import { CreateTask } from '../../interfaces/create-task';
 import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface TaskForm {
-    title: FormControl,
-    description: FormControl,
-    startAt: FormControl,
-    endAt: FormControl,
-    priority: FormControl
+    title: FormControl;
+    description: FormControl;
+    startAt: FormControl;
+    endAt: FormControl;
+    priority: FormControl;
 }
 
 type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
@@ -25,18 +32,18 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
 @Component({
     selector: 'app-task',
     imports: [
-    DateRangeComponent,
-    ScheduleFormComponent,
-    TimeBoxComponent,
-    PriorityComponent,
-    ReactiveFormsModule,
-    ButtonTaskComponent
-],
-    templateUrl: './task.component.html'
+        DateRangeComponent,
+        ScheduleFormComponent,
+        TimeBoxComponent,
+        PriorityComponent,
+        ReactiveFormsModule,
+        ButtonTaskComponent,
+        TranslatePipe,
+    ],
+    templateUrl: './task.component.html',
 })
 export class TaskComponent implements OnInit {
     taskForm: FormGroup<TaskForm>;
-    @Input() title: string = 'Create new task';
     selectedPriority: InputPriorityTypes = 'LOW';
     selectedDate: Date = new Date();
     startTime: string = '';
@@ -46,7 +53,7 @@ export class TaskComponent implements OnInit {
         private formBuilder: FormBuilder,
         private taskService: TaskService,
         private router: Router,
-        private toastr: ToastrService,
+        private messageService: MessageService,
         private dateTimeService: DateTimeService
     ) {
         this.taskForm = this.formBuilder.group({
@@ -54,7 +61,7 @@ export class TaskComponent implements OnInit {
             description: new FormControl('', [Validators.required]),
             startAt: new FormControl('', [Validators.required]),
             endAt: new FormControl('', [Validators.required]),
-            priority: new FormControl('LOW', [Validators.required])
+            priority: new FormControl('LOW', [Validators.required]),
         });
     }
 
@@ -69,13 +76,12 @@ export class TaskComponent implements OnInit {
     setPriority(priority: InputPriorityTypes): void {
         this.selectedPriority = priority;
         this.taskForm.patchValue({
-            priority: priority
+            priority: priority,
         });
     }
 
     onDateSelected(date: Date) {
         if (this.dateTimeService.isDateInPast(date)) {
-            this.toastr.warning('Selected date cannot be in the past');
             this.selectedDate = new Date();
             return;
         }
@@ -83,20 +89,26 @@ export class TaskComponent implements OnInit {
         this.updateDateTime();
     }
 
-    onDateTimeUpdate(dateTime: {startAt: string, endAt: string}) {
+    onDateTimeUpdate(dateTime: { startAt: string; endAt: string }) {
         this.taskForm.patchValue({
             startAt: dateTime.startAt,
-            endAt: dateTime.endAt
+            endAt: dateTime.endAt,
         });
     }
 
     updateDateTime() {
-        const startDate = this.dateTimeService.formatDateTime(this.selectedDate, this.startTime);
-        const endDate = this.dateTimeService.formatDateTime(this.selectedDate, this.endTime);
+        const startDate = this.dateTimeService.formatDateTime(
+            this.selectedDate,
+            this.startTime
+        );
+        const endDate = this.dateTimeService.formatDateTime(
+            this.selectedDate,
+            this.endTime
+        );
 
         this.taskForm.patchValue({
             startAt: startDate,
-            endAt: endDate
+            endAt: endDate,
         });
     }
 
@@ -106,7 +118,11 @@ export class TaskComponent implements OnInit {
 
     submit() {
         if (this.taskForm.invalid) {
-            this.toastr.error('Please fill in all required fields');
+            this.messageService.add({
+                severity: 'warn',
+                summary: '',
+                detail: '',
+            });
             return;
         }
 
@@ -116,7 +132,6 @@ export class TaskComponent implements OnInit {
         );
 
         if (startDateTime < new Date()) {
-            this.toastr.error('Task cannot start before current date');
             return;
         }
 
@@ -125,17 +140,25 @@ export class TaskComponent implements OnInit {
             description: this.taskForm.get('description')?.value || '',
             startAt: this.taskForm.get('startAt')?.value || '',
             endAt: this.taskForm.get('endAt')?.value || '',
-            priority: this.taskForm.get('priority')?.value || 'LOW'
+            priority: this.taskForm.get('priority')?.value || 'LOW',
         };
 
         this.taskService.create(task).subscribe({
             next: () => {
-                this.toastr.success('Task created successfully!');
                 this.router.navigate(['/home']);
+                this.messageService.add({
+                    severity: 'success',
+                    summary: '',
+                    detail: '',
+                });
             },
             error: () => {
-                this.toastr.error('Error creating task. Please try again.');
-            }
+                this.messageService.add({
+                    severity: 'danger',
+                    summary: '',
+                    detail: '',
+                });
+            },
         });
     }
 }

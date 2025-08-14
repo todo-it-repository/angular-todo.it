@@ -1,22 +1,25 @@
 <header>
     <app-header
         [title]="headerTitle"
-        placeholder="Search Task Here"
+        [placeholder]="'home.header.search' | translate"
     ></app-header>
 </header>
 <main class="md:max-w-4xl md:mx-auto">
     <div class="flex justify-between m-4">
-        <h1 class="text-[22px]">Progress</h1>
+        <h1 class="text-[22px]">{{ 'home.progress' | translate }}</h1>
     </div>
-    <app-daily-task title="Daily Task" [tasks]="todayTasks"></app-daily-task>
+    <app-daily-task
+        [title]="'components.dailyTasks.title' | translate"
+        [tasks]="todayTasks"
+    ></app-daily-task>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 m-4">
         <section>
             <div class="flex justify-between items-baseline mb-4">
-                <h1 class="text-[22px]">Today's Task</h1>
+                <h1 class="text-[22px]">{{ 'home.today' | translate }}</h1>
                 <app-toggle-button
                     [isExpanded]="showAllTodayTasks"
-                    [onText]="'Show Less'"
-                    [offText]="'See All'"
+                    [onText]="'home.btns.less' | translate"
+                    [offText]="'home.btns.all' | translate"
                     (toggle)="toggleShowAllTasksToday($event)"
                 ></app-toggle-button>
             </div>
@@ -44,9 +47,9 @@
                     <div
                         class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
                     >
-                        <span class="text-lg opacity-60"
-                            >No tasks for today...</span
-                        >
+                        <span class="text-lg opacity-60">{{
+                            'home.tasks.todayPlaceholder' | translate
+                        }}</span>
                     </div>
                 </ng-template>
             </div>
@@ -57,8 +60,8 @@
                 <h1 class="text-[22px]">Tomorrow Task</h1>
                 <app-toggle-button
                     [isExpanded]="showAllTomorrowTasks"
-                    [onText]="'Show Less'"
-                    [offText]="'See All'"
+                    [onText]="'home.btns.less' | translate"
+                    [offText]="'home.btns.all' | translate"
                     (toggle)="toggleShowAllTomorrowTasks($event)"
                 ></app-toggle-button>
             </div>
@@ -88,9 +91,9 @@
                     <div
                         class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
                     >
-                        <span class="text-lg opacity-60"
-                            >No tasks to do tomorrow...</span
-                        >
+                        <span class="text-lg opacity-60">{{
+                            'home.tasks.tomorrowPlaceholder' | translate
+                        }}</span>
                     </div>
                 </ng-template>
             </div>
@@ -102,8 +105,8 @@
             <h1 class="text-[22px]">All Tasks</h1>
             <app-toggle-button
                 [isExpanded]="showAllTasks"
-                [onText]="'Show Less'"
-                [offText]="'See All'"
+                [onText]="'home.btns.less' | translate"
+                [offText]="'home.btns.all' | translate"
                 (toggle)="toggleListAllTasks($event)"
             ></app-toggle-button>
         </div>
@@ -131,9 +134,9 @@
                 <div
                     class="flex w-full h-20 bg-gray items-center text-center justify-center rounded-lg"
                 >
-                    <span class="text-lg opacity-60"
-                        >Your tasks will appear here</span
-                    >
+                    <span class="text-lg opacity-60">{{
+                        'home.tasks.allTasksPlaceholder' | translate
+                    }}</span>
                 </div>
             </ng-template>
         </div>

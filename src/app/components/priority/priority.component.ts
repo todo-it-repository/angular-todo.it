@@ -5,10 +5,8 @@ type InputPriorityTypes = 'LOW' | 'MEDIUM' | 'HIGH';
 
 @Component({
     selector: 'app-priority',
-    imports: [
-        CommonModule
-    ],
-    templateUrl: './priority.component.html'
+    imports: [CommonModule],
+    templateUrl: './priority.component.html',
 })
 export class PriorityComponent {
     @Input() title: string = '';

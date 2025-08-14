@@ -1,21 +1,23 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR,
+    ReactiveFormsModule,
+} from '@angular/forms';
 
 type InputTypes = 'text' | 'password' | 'login';
 
 @Component({
     selector: 'app-input-form',
-    imports: [
-        ReactiveFormsModule
-    ],
+    imports: [ReactiveFormsModule],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => InputFormComponent),
-            multi: true
-        }
+            multi: true,
+        },
     ],
-    templateUrl: './input-form.component.html'
+    templateUrl: './input-form.component.html',
 })
 export class InputFormComponent implements ControlValueAccessor {
     @Input() type: InputTypes = 'text';
@@ -44,6 +46,5 @@ export class InputFormComponent implements ControlValueAccessor {
         this.onTouched = fn;
     }
 
-    setDisabledState(isDisabled: boolean): void {
-    }
+    setDisabledState(isDisabled: boolean): void {}
 }
