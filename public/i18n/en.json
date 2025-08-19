@@ -36,6 +36,8 @@
         },
         "progress": "Progress",
         "today": "Today's Task",
+        "tomorrow": "Tomorrow's Task",
+        "all": "All tasks",
         "btns": {
             "less": "Show Less",
             "all": "See All"
@@ -43,7 +45,7 @@
         "tasks": {
             "todayPlaceholder": "No tasks for today...",
             "tomorrowPlaceholder": "No tasks to do tomorrow...",
-            "allTasksPlaceholder": "Your tasks will appear here"
+            "allTasksPlaceholder": "All your tasks will appear here."
         }
     },
     "task": {
@@ -54,6 +56,7 @@
             "placeholderDescription": "Description",
             "titleStart": "Start Time",
             "titleEnd": "End Time",
+            "hour": "Hour",
             "priority": {
                 "title": "Priority",
                 "btns": {
@@ -81,6 +84,74 @@
         },
         "date-range": {
             "locale": "en-US"
+        }
+    },
+    "toasts": {
+        "login": {
+            "success": {
+                "summary": "Welcome!",
+                "details": "Login successful. Enjoy your tasks!"
+            },
+            "error": {
+                "summary": "Failed to log in",
+                "details": "We were unable to access your account. Please verify your information and try again."
+            }
+        },
+        "register": {
+            "success": {
+                "summary": "Welcome!",
+                "details": "Registration successful. Enjoy your tasks!"
+            },
+            "error": {
+                "summary": "Failure to register user",
+                "details": "We were unable to register your account. Please check your information and try again."
+            }
+        },
+        "task": {
+            "create": {
+                "success": {
+                    "summary": "Task created!",
+                    "details": "Your task has been added successfully."
+                },
+                "error": {
+                    "summary": "Error creating task",
+                    "details": "The task could not be created. Please try again."
+                }
+            },
+            "update": {
+                "success": {
+                    "summary": "Task updated!",
+                    "details": "The task information has been saved."
+                },
+                "error": {
+                    "summary": "Error updating task",
+                    "details": "The task could not be updated. Please try again."
+                }
+            },
+            "delete": {
+                "success": {
+                    "summary": "Task deleted!",
+                    "details": "The task has been successfully removed."
+                },
+                "error": {
+                    "summary": "Error deleting task",
+                    "details": "The task could not be deleted. Please try again."
+                }
+            },
+            "validations": {
+                "incomplete": {
+                    "summary": "Invalid data",
+                    "details": "Check the required fields and try again."
+                },
+                "datetime": {
+                    "summary": "Invalid date and time",
+                    "details": "The start date and time must be after the current date."
+                }
+            }
+        },
+        "serverDown": {
+            "summary": "Server unavailable",
+            "details": "Unable to connect to the server. Please try again later."
         }
     }
 }

@@ -17,7 +17,7 @@ import { TimeBoxComponent } from '../../components/time-box/time-box.component';
 import { CreateTask } from '../../interfaces/create-task';
 import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 interface TaskForm {
     title: FormControl;
@@ -53,8 +53,9 @@ export class TaskComponent implements OnInit {
         private formBuilder: FormBuilder,
         private taskService: TaskService,
         private router: Router,
-        private messageService: MessageService,
-        private dateTimeService: DateTimeService
+        private toast: MessageService,
+        private dateTimeService: DateTimeService,
+        private translate: TranslateService
     ) {
         this.taskForm = this.formBuilder.group({
             title: new FormControl('', [Validators.required]),
@@ -118,10 +119,14 @@ export class TaskComponent implements OnInit {
 
     submit() {
         if (this.taskForm.invalid) {
-            this.messageService.add({
+            this.toast.add({
                 severity: 'warn',
-                summary: '',
-                detail: '',
+                summary: this.translate.instant(
+                    'toasts.task.validations.incomplete.summary'
+                ),
+                detail: this.translate.instant(
+                    'toasts.task.validations.incomplete.details'
+                ),
             });
             return;
         }
@@ -132,6 +137,15 @@ export class TaskComponent implements OnInit {
         );
 
         if (startDateTime < new Date()) {
+            this.toast.add({
+                severity: 'info',
+                summary: this.translate.instant(
+                    'toasts.task.validations.datetime.summary'
+                ),
+                detail: this.translate.instant(
+                    'toasts.task.validations.datetime.details'
+                ),
+            });
             return;
         }
 
@@ -145,18 +159,26 @@ export class TaskComponent implements OnInit {
 
         this.taskService.create(task).subscribe({
             next: () => {
-                this.router.navigate(['/home']);
-                this.messageService.add({
+                this.toast.add({
                     severity: 'success',
-                    summary: '',
-                    detail: '',
+                    summary: this.translate.instant(
+                        'toasts.task.create.success.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.create.success.details'
+                    ),
                 });
+                this.router.navigate(['/home']);
             },
             error: () => {
-                this.messageService.add({
-                    severity: 'danger',
-                    summary: '',
-                    detail: '',
+                this.toast.add({
+                    severity: 'error',
+                    summary: this.translate.instant(
+                        'toasts.task.create.error.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.create.error.details'
+                    ),
                 });
             },
         });

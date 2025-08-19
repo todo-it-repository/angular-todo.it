@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateTimeService } from '../../services/date-time.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-time-box',
-    imports: [FormsModule],
+    imports: [FormsModule, TranslatePipe],
     templateUrl: './time-box.component.html',
     styleUrl: './time-box.component.css',
 })

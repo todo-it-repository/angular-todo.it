@@ -30,12 +30,14 @@
         "header": {
             "search": "Pesquise tarefas aqui",
             "titlePrimary": "Você tem ",
-            "titleSecondary": "hoje para concluir",
+            "titleSecondary": "para concluir hoje",
             "task": " tarefa ",
             "tasks": " tarefas "
         },
         "progress": "Progresso",
         "today": "Tarefa de hoje",
+        "tomorrow": "Tarefas para amanhã",
+        "all": "Todas as tarefas",
         "btns": {
             "less": "Mostrar menos",
             "all": "Ver tudo"
@@ -43,7 +45,7 @@
         "tasks": {
             "todayPlaceholder": "Nenhuma tarefa para hoje...",
             "tomorrowPlaceholder": "Não há tarefas para amanhã...",
-            "allTasksPlaceholder": "Suas tarefas aparecerão aqui."
+            "allTasksPlaceholder": "Todas as suas tarefas aparecerão aqui."
         }
     },
     "task": {
@@ -52,8 +54,9 @@
             "title": "Agenda",
             "placeholderName": "Nome",
             "placeholderDescription": "Descrição",
-            "titleStart": "Hora de início",
-            "titleEnd": "Hora do fim",
+            "titleStart": "Início",
+            "titleEnd": "Término",
+            "hour": "Horas",
             "priority": {
                 "title": "Prioridade",
                 "btns": {
@@ -81,6 +84,74 @@
         },
         "date-range": {
             "locale": "pt-BR"
+        }
+    },
+    "toasts": {
+        "login": {
+            "success": {
+                "summary": "Bem-vindo(a)!",
+                "details": "Login realizado com sucesso. Aproveite suas tarefas!"
+            },
+            "error": {
+                "summary": "Falha ao logar",
+                "details": "Não foi possível acessar sua conta. Verifique suas informações e tente novamente."
+            }
+        },
+        "register": {
+            "success": {
+                "summary": "Bem-vindo(a)!",
+                "details": "Cadastro realizado com sucesso. Aproveite suas tarefas!"
+            },
+            "error": {
+                "summary": "Falha ao cadastrar usuário",
+                "details": "Não foi possível cadastrar sua conta. Verifique suas informações e tente novamente."
+            }
+        },
+        "task": {
+            "create": {
+                "success": {
+                    "summary": "Tarefa criada!",
+                    "details": "Sua tarefa foi adicionada com sucesso."
+                },
+                "error": {
+                    "summary": "Erro ao criar tarefa",
+                    "details": "Não foi possível criar a tarefa. Tente novamente."
+                }
+            },
+            "update": {
+                "success": {
+                    "summary": "Tarefa atualizada!",
+                    "details": "As informações da tarefa foram salvas"
+                },
+                "error": {
+                    "summary": "Erro ao atualizar tarefa",
+                    "details": "Não foi possível atualizar a tarefa. Tente novamente."
+                }
+            },
+            "delete": {
+                "success": {
+                    "summary": "Tarefa excluída!",
+                    "details": "A tarefa foi removida com sucesso."
+                },
+                "error": {
+                    "summary": "Erro ao excluir tarefa",
+                    "details": "Não foi possível excluir a tarefa. Tente novamente."
+                }
+            },
+            "validations": {
+                "incomplete": {
+                    "summary": "Dados inválidos",
+                    "details": "Verifique os campos obrigatórios e tente novamente."
+                },
+                "datetime": {
+                    "summary": "Data e hora inválidas",
+                    "details": "A data e hora inicial devem ser posteriores à data atual."
+                }
+            }
+        },
+        "serverDown": {
+            "summary": "Servidor indisponível",
+            "details": "Não foi possível conectar ao servidor. Tente novamente mais tarde."
         }
     }
 }

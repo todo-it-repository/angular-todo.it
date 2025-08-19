@@ -6,11 +6,13 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { DefaultLoginComponent } from '../../../components/default-login/default-login.component';
 import { InputFormComponent } from '../../../components/input-form/input-form.component';
 import { AuthService } from '../../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface LoginForm {
     login: FormControl;
@@ -33,7 +35,12 @@ interface LoginForm {
 export class LoginComponent {
     loginForm!: FormGroup<LoginForm>;
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private toast: MessageService,
+        private translate: TranslateService
+    ) {
         this.loginForm = new FormGroup({
             login: new FormControl('', [
                 Validators.required,
@@ -53,9 +60,40 @@ export class LoginComponent {
             .login(this.loginForm.value.login, this.loginForm.value.password)
             .subscribe({
                 next: () => {
+                    this.toast.add({
+                        severity: 'success',
+                        summary: this.translate.instant(
+                            'toasts.login.success.summary'
+                        ),
+                        detail: this.translate.instant(
+                            'toasts.login.success.details'
+                        ),
+                    });
                     this.router.navigate(['home']);
                 },
-                error: () => {},
+                error: (error: HttpErrorResponse) => {
+                    if (error.status === 0) {
+                        this.toast.add({
+                            severity: 'error',
+                            summary: this.translate.instant(
+                                'toasts.serverDown.summary'
+                            ),
+                            detail: this.translate.instant(
+                                'toasts.serverDown.details'
+                            ),
+                        });
+                    } else {
+                        this.toast.add({
+                            severity: 'warn',
+                            summary: this.translate.instant(
+                                'toasts.login.error.summary'
+                            ),
+                            detail: this.translate.instant(
+                                'toasts.login.error.details'
+                            ),
+                        });
+                    }
+                },
             });
     }
 

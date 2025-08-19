@@ -6,11 +6,13 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { DefaultLoginComponent } from '../../../components/default-login/default-login.component';
 import { InputFormComponent } from '../../../components/input-form/input-form.component';
 import { AuthService } from '../../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface RegisterForm {
     name: FormControl;
@@ -35,7 +37,12 @@ interface RegisterForm {
 export class RegisterComponent {
     registerForm!: FormGroup<RegisterForm>;
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private toast: MessageService,
+        private translate: TranslateService
+    ) {
         this.registerForm = new FormGroup({
             name: new FormControl('', [
                 Validators.required,
@@ -68,8 +75,41 @@ export class RegisterComponent {
                 this.registerForm.value.password
             )
             .subscribe({
-                next: () => {},
-                error: () => {},
+                next: () => {
+                    this.toast.add({
+                        severity: 'success',
+                        summary: this.translate.instant(
+                            'toasts.register.success.summary'
+                        ),
+                        detail: this.translate.instant(
+                            'toasts.register.success.details'
+                        ),
+                    });
+                    this.router.navigate(['home']);
+                },
+                error: (error: HttpErrorResponse) => {
+                    if (error.status === 0) {
+                        this.toast.add({
+                            severity: 'error',
+                            summary: this.translate.instant(
+                                'toasts.serverDown.summary'
+                            ),
+                            detail: this.translate.instant(
+                                'toasts.serverDown.details'
+                            ),
+                        });
+                    } else {
+                        this.toast.add({
+                            severity: 'warn',
+                            summary: this.translate.instant(
+                                'toasts.register.error.summary'
+                            ),
+                            detail: this.translate.instant(
+                                'toasts.register.error.details'
+                            ),
+                        });
+                    }
+                },
             });
     }
 

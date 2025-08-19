@@ -10,7 +10,8 @@ import { ScheduleFormComponent } from '../../components/schedule-form/schedule-f
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
 import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 
 interface TaskForm {
     id: FormControl;
@@ -52,7 +53,9 @@ export class ViewTaskComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private taskService: TaskService,
-        private dateTimeService: DateTimeService
+        private dateTimeService: DateTimeService,
+        private toast: MessageService,
+        private translate: TranslateService
     ) {}
 
     ngOnInit() {
@@ -176,18 +179,56 @@ export class ViewTaskComponent implements OnInit {
 
         this.taskService.update(this.taskId, updatedTask).subscribe({
             next: () => {
+                this.toast.add({
+                    severity: 'info',
+                    summary: this.translate.instant(
+                        'toasts.task.update.success.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.update.success.details'
+                    ),
+                });
                 this.router.navigate(['/home']);
             },
-            error: (error) => {},
+            error: () => {
+                this.toast.add({
+                    severity: 'error',
+                    summary: this.translate.instant(
+                        'toasts.task.update.error.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.update.error.details'
+                    ),
+                });
+            },
         });
     }
 
     delete() {
         this.taskService.delete(this.taskId).subscribe({
             next: () => {
+                this.toast.add({
+                    severity: 'contrast',
+                    summary: this.translate.instant(
+                        'toasts.task.delete.success.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.delete.success.details'
+                    ),
+                });
                 this.router.navigate(['/home']);
             },
-            error: (error) => {},
+            error: () => {
+                this.toast.add({
+                    severity: 'error',
+                    summary: this.translate.instant(
+                        'toasts.task.delete.error.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.task.delete.error.details'
+                    ),
+                });
+            },
         });
     }
 }

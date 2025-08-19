@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
         MessageService,
         provideTranslateService({
             lang: 'pt',
-            fallbackLang: 'pt',
+            fallbackLang: 'en',
             loader: provideTranslateHttpLoader({
                 prefix: 'public/i18n/',
                 suffix: '.json',
