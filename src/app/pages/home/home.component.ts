@@ -73,6 +73,10 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['task', taskId]);
     }
 
+    navigateToUser() {
+        this.router.navigate(['user/me']);
+    }
+
     updateTaskStatus(taskId: string, completed: boolean): void {
         this.taskService.updateTaskStatus(taskId, completed).subscribe({
             next: () => {

@@ -100,7 +100,7 @@
         "register": {
             "success": {
                 "summary": "Bem-vindo(a)!",
-                "details": "Cadastro realizado com sucesso. Aproveite suas tarefas!"
+                "details": "Cadastro realizado com sucesso. Faça o login e aproveite!"
             },
             "error": {
                 "summary": "Falha ao cadastrar usuário",

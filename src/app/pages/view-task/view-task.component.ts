@@ -177,6 +177,24 @@ export class ViewTaskComponent implements OnInit {
             priority: this.taskForm.get('priority')?.value,
         };
 
+        const startDateTime = this.dateTimeService.createDateTime(
+            this.selectedDate,
+            this.startTime
+        );
+
+        if (startDateTime < new Date()) {
+            this.toast.add({
+                severity: 'info',
+                summary: this.translate.instant(
+                    'toasts.task.validations.datetime.summary'
+                ),
+                detail: this.translate.instant(
+                    'toasts.task.validations.datetime.details'
+                ),
+            });
+            return;
+        }
+
         this.taskService.update(this.taskId, updatedTask).subscribe({
             next: () => {
                 this.toast.add({

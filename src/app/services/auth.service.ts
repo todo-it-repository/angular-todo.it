@@ -3,18 +3,20 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 
 import { LoginResponse } from '../types/login-response.type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    API_URL: string = 'http://localhost:8080/auth';
-
     constructor(private httpClient: HttpClient) {}
 
     login(login: string, password: string) {
         return this.httpClient
-            .post<LoginResponse>(this.API_URL + '/login', { login, password })
+            .post<LoginResponse>(environment.API_URL + '/auth/login', {
+                login,
+                password,
+            })
             .pipe(
                 tap((value) => {
                     sessionStorage.setItem('auth-token', value.token);
@@ -25,7 +27,7 @@ export class AuthService {
 
     register(name: string, login: string, password: string) {
         return this.httpClient
-            .post<LoginResponse>(this.API_URL + '/register', {
+            .post<LoginResponse>(environment.API_URL + '/auth/register', {
                 name,
                 login,
                 password,

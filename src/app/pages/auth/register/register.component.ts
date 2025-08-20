@@ -85,9 +85,10 @@ export class RegisterComponent {
                             'toasts.register.success.details'
                         ),
                     });
-                    this.router.navigate(['home']);
+                    this.router.navigate(['login']);
                 },
                 error: (error: HttpErrorResponse) => {
+                    console.log(error); 
                     if (error.status === 0) {
                         this.toast.add({
                             severity: 'error',

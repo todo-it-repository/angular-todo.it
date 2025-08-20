@@ -100,7 +100,7 @@
         "register": {
             "success": {
                 "summary": "Welcome!",
-                "details": "Registration successful. Enjoy your tasks!"
+                "details": "Registration successful. Log in and enjoy!"
             },
             "error": {
                 "summary": "Failure to register user",

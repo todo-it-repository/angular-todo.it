@@ -2,6 +2,7 @@
     <app-header
         [title]="headerTitle"
         [placeholder]="'home.header.search' | translate"
+        (navigate)="navigateToUser()"
     ></app-header>
 </header>
 <main class="md:max-w-4xl md:mx-auto">
@@ -57,7 +58,7 @@
 
         <section>
             <div class="flex justify-between items-baseline mb-4">
-                <h1 class="text-[22px]">Tomorrow Task</h1>
+                <h1 class="text-[22px]">{{ 'home.tomorrow' | translate }}</h1>
                 <app-toggle-button
                     [isExpanded]="showAllTomorrowTasks"
                     [onText]="'home.btns.less' | translate"
@@ -102,7 +103,7 @@
 
     <section class="mt-8 m-4">
         <div class="flex justify-between items-baseline mb-4">
-            <h1 class="text-[22px]">All Tasks</h1>
+            <h1 class="text-[22px]">{{ 'home.all' | translate }}</h1>
             <app-toggle-button
                 [isExpanded]="showAllTasks"
                 [onText]="'home.btns.less' | translate"

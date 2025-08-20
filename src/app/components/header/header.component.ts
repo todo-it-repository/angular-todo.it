@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ButtonRoundComponent } from '../button-round/button-round.component';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -13,10 +12,12 @@ export class HeaderComponent {
     @Input() title: string = '';
     @Input() placeholder: string = '';
     @Output() searchEvent = new EventEmitter<string>();
+    @Output('navigate') onNavigate = new EventEmitter();
+
     isFocused: boolean = false;
     searchContent: string = '';
 
-    constructor(private router: Router) {}
+    constructor() {}
 
     search() {
         this.searchEvent.emit(this.searchContent);
@@ -31,6 +32,6 @@ export class HeaderComponent {
     }
 
     navigate() {
-        this.router.navigate(['login']);
+        this.onNavigate.emit();
     }
 }
