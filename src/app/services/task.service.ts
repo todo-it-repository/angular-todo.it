@@ -6,7 +6,7 @@ import { CreateTask } from '../interfaces/create-task.interface';
 import { Page } from '../interfaces/page.interface';
 import { Task } from '../interfaces/task.interface';
 import { ViewTask } from '../interfaces/view-task.interface';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
