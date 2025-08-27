@@ -1,14 +1,121 @@
-<header class="relative flex w-full h-[10vh] justify-center mx-auto px-6">
-    <button
-        class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer rounded-full hover:bg-neutral-800 active:translate-y-0.5 transition-all duration-150"
-        (click)="goBack()"
-    >
-        <img class="w-8 h-8" src="/assets/svg/back-icon.svg" alt="Back" />
-    </button>
-    <div class="w-full text-center">
-        <span>teste</span>
+<header class="md:max-w-4xl md:mx-auto h-[20vh] justify-center p-4">
+    <div class="relative flex w-full items-center justify-center">
+        <button
+            class="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer rounded-full hover:bg-neutral-800 hover:scale-95 transition-all duration-300 ease-in-out"
+            (click)="goBack()"
+        >
+            <img
+                class="w-8 h-8"
+                src="/assets/svg/back-icon.svg"
+                alt="Back icon"
+            />
+        </button>
+        <span class="text-2xl font-normal">
+            {{ 'user.header.profile' | translate }}
+        </span>
     </div>
+    <div
+        class="flex flex-col w-full text-center mt-8"
+        *ngIf="user; else loading"
+    >
+        <span class="text-2xl font-semibold mt-2">
+            {{ 'user.header.welcome' | translate }} {{ user.name }}
+        </span>
+        <p class="text-lg text-graylight">{{ user.login }}</p>
+    </div>
+    <ng-template #loading>
+        <span>{{ 'user.header.loading' | translate }}</span>
+    </ng-template>
 </header>
-<main class="flex w-full justify-center mx-auto p-6 h-auto">
-    <div class="w-full h-[80vh] rounded-2xl border-2 border-graylight"></div>
+<main class="flex w-full justify-center md:max-w-4xl md:mx-auto px-6">
+    <div class="w-full h-[70vh] flex flex-col">
+        <span class="text-[22px] font-normal">
+            {{ 'user.manage.title' | translate }}
+        </span>
+        <ul class="rounded-2xl bg-midnightlight mt-4 px-4">
+            <li
+                class="border-b-1 border-graylight my-4 cursor-pointer"
+                routerLink="editAccount"
+            >
+                <div class="flex w-full justify-between mb-4">
+                    <div class="flex gap-4 items-center">
+                        <img
+                            class="w-5"
+                            src="assets/svg/edit.svg"
+                            alt="Edit icon"
+                        />
+                        <span class="text-lg text-white opacity-80">
+                            {{ 'user.manage.edit' | translate }}
+                        </span>
+                    </div>
+                    <img
+                        class="w-2"
+                        src="assets/svg/arrow-right.svg"
+                        alt="Arrow right icon"
+                    />
+                </div>
+            </li>
+            <li
+                class="border-b-1 border-graylight my-4 cursor-pointer"
+                routerLink="language"
+            >
+                <div class="flex w-full justify-between mb-4">
+                    <div class="flex gap-4 items-center">
+                        <img
+                            class="w-5"
+                            src="assets/svg/language.svg"
+                            alt="Language icon"
+                        />
+                        <span class="text-lg text-white opacity-80">
+                            {{ 'user.manage.language' | translate }}
+                        </span>
+                    </div>
+                    <img
+                        class="w-2"
+                        src="assets/svg/arrow-right.svg"
+                        alt="Arrow right icon"
+                    />
+                </div>
+            </li>
+            <li
+                class="border-b-1 border-graylight my-4 cursor-pointer"
+                routerLink="delete"
+            >
+                <div class="flex w-full justify-between mb-4">
+                    <div class="flex gap-4 items-center">
+                        <img
+                            class="w-5"
+                            src="assets/svg/delete.svg"
+                            alt="Delete icon"
+                        />
+                        <span class="text-lg text-white opacity-80">
+                            {{ 'user.manage.delete' | translate }}
+                        </span>
+                    </div>
+                    <img
+                        class="w-2"
+                        src="assets/svg/arrow-right.svg"
+                        alt="Arrow right icon"
+                    />
+                </div>
+            </li>
+            <li class="my-4">
+                <div
+                    class="flex w-full justify-between mb-4 cursor-pointer"
+                    routerLink="leave"
+                >
+                    <div class="flex gap-4 items-center">
+                        <img
+                            class="w-5"
+                            src="assets/svg/logout.svg"
+                            alt="Logout icon"
+                        />
+                        <span class="text-lg text-white opacity-80">
+                            {{ 'user.manage.leave' | translate }}
+                        </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </main>

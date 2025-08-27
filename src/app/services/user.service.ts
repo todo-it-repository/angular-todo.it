@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { GetUser } from '../types/get-user.type';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { UserResponse } from '../interfaces/user-response.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -10,14 +10,14 @@ import { environment } from '../../environments/environment';
 export class UserService {
     constructor(private http: HttpClient) {}
 
-    getUser(): Observable<GetUser> {
+    getUser(): Observable<UserResponse> {
         const token = sessionStorage.getItem('auth-token');
 
         const headers = new HttpHeaders({
             Authorization: 'Bearer ' + token,
         });
 
-        return this.http.get<GetUser>(environment.API_URL + '/user/me', {
+        return this.http.get<UserResponse>(environment.API_URL + '/user/me', {
             headers,
         });
     }

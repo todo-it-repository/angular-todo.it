@@ -70,6 +70,20 @@
             }
         }
     },
+    "user": {
+        "header": {
+            "profile": "Perfil",
+            "welcome": "Olá! ",
+            "loading": "Carregando informações do usuário..."
+        },
+        "manage": {
+            "title": "Gerenciar conta",
+            "edit": "Editar perfil",
+            "language": "Mudar idioma",
+            "delete": "Excluir conta",
+            "leave": "Sair"
+        }
+    },
     "components": {
         "dailyTasks": {
             "title": "Tarefa diária",

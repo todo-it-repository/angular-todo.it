@@ -70,6 +70,20 @@
             }
         }
     },
+    "user": {
+        "header": {
+            "profile": "Profile",
+            "welcome": "Hello! ",
+            "loading": "Loading user information..."
+        },
+        "manage": {
+            "title": "Manage account",
+            "edit": "Edit profile",
+            "language": "Change language",
+            "delete": "Delete account",
+            "leave": "Log out"
+        }
+    },
     "components": {
         "dailyTasks": {
             "title": "Daily Task",
