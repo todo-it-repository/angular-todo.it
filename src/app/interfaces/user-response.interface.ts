@@ -1,4 +1,4 @@
-export type GetUser = {
+export interface UserResponse {
     name: string;
     login: string;
-};
+}

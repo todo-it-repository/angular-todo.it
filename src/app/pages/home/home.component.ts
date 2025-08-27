@@ -8,7 +8,7 @@ import { DailyTaskComponent } from '../../components/daily-task/daily-task.compo
 import { HeaderComponent } from '../../components/header/header.component';
 import { TaskCardComponent } from '../../components/task-card/task-card.component';
 import { ToggleButtonComponent } from '../../components/toggle-button/toggle-button.component';
-import { Task } from '../../interfaces/task';
+import { Task } from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
 
 @Component({

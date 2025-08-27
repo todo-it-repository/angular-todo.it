@@ -14,7 +14,7 @@ import { DateRangeComponent } from '../../components/date-range/date-range.compo
 import { PriorityComponent } from '../../components/priority/priority.component';
 import { ScheduleFormComponent } from '../../components/schedule-form/schedule-form.component';
 import { TimeBoxComponent } from '../../components/time-box/time-box.component';
-import { CreateTask } from '../../interfaces/create-task';
+import { CreateTask } from '../../interfaces/create-task.interface';
 import { DateTimeService } from '../../services/date-time.service';
 import { TaskService } from '../../services/task.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';

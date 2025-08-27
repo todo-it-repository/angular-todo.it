@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Task } from '../../interfaces/task';
+import { Task } from '../../interfaces/task.interface';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

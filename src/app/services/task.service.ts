@@ -2,11 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CreateTask } from '../interfaces/create-task';
-import { Page } from '../interfaces/page';
-import { Task } from '../interfaces/task';
-import { ViewTask } from '../interfaces/view-task';
-import { environment } from '../../environments/environment';
+import { CreateTask } from '../interfaces/create-task.interface';
+import { Page } from '../interfaces/page.interface';
+import { Task } from '../interfaces/task.interface';
+import { ViewTask } from '../interfaces/view-task.interface';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
     providedIn: 'root',
