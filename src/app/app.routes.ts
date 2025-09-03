@@ -5,9 +5,10 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TaskComponent } from './pages/task/task.component';
-import { UserComponent } from './pages/user/user.component';
+import { UserComponent } from './pages/profile/user/user.component';
 import { ViewTaskComponent } from './pages/view-task/view-task.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { EditComponent } from './pages/profile/edit/edit.component';
 
 export const routes: Routes = [
     {
@@ -33,8 +34,13 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'user/me',
+        path: 'profile',
         component: UserComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'profile/edit',
+        component: EditComponent,
         canActivate: [AuthGuard],
     },
     {

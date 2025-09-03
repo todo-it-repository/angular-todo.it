@@ -1,0 +1,26 @@
+<header class="md:max-w-4xl md:mx-auto h-[20vh] justify-center p-4">
+    <div class="relative flex w-full items-center justify-center">
+        <button
+            class="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer rounded-full hover:bg-neutral-800 hover:scale-95 transition-all duration-300 ease-in-out"
+            (click)="goBack()"
+        >
+            <img
+                class="w-8 h-8"
+                src="/assets/svg/back-icon.svg"
+                alt="Back icon"
+            />
+        </button>
+        <span class="text-2xl font-normal">
+            {{ 'edit.header.title' | translate }}
+        </span>
+    </div>
+</header>
+
+<main class="flex w-full justify-center md:max-w-4xl md:mx-auto px-6">
+    <div class="flex flex-col md:grid md:grid-cols-2 w-full gap-6">
+        <app-input-form />
+        <app-input-form />
+        <app-input-form />
+        <app-input-form />
+    </div>
+</main>

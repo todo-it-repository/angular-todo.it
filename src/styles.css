@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import 'tailwindcss';
+@plugin 'tailwindcss-primeui';
 
 @theme {
     --color-purple: #ba83de;
@@ -20,4 +21,13 @@ body {
     background-color: #020206;
     color: #ffffff;
     height: auto;
+}
+
+.p-radiobutton .p-radiobutton-box {
+    border-color: #ba83de !important;
+    background: #ba83de !important;
+}
+
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    background-color: #000 !important;
 }

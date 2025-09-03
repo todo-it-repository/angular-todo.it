@@ -84,6 +84,21 @@
             "leave": "Log out"
         }
     },
+    "edit": {
+        "header": {
+            "title": "Edit profile"
+        }
+    },
+    "language": {
+        "header": {
+            "title": "Change language"
+        },
+        "manage": {
+            "title": "Avaliable languages",
+            "pt": "Portuguese",
+            "en": "English"
+        }
+    },
     "components": {
         "dailyTasks": {
             "title": "Daily Task",

@@ -84,6 +84,21 @@
             "leave": "Sair"
         }
     },
+    "edit": {
+        "header": {
+            "title": "Editar perfil"
+        }
+    },
+    "language": {
+        "header": {
+            "title": "Mudar idioma"
+        },
+        "manage": {
+            "title": "Idiomas disponíveis",
+            "pt": "Português",
+            "en": "Inglês"
+        }
+    },
     "components": {
         "dailyTasks": {
             "title": "Tarefa diária",

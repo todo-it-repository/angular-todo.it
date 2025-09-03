@@ -14,18 +14,14 @@
             {{ 'user.header.profile' | translate }}
         </span>
     </div>
-    <div
-        class="flex flex-col w-full text-center mt-8"
-        *ngIf="user; else loading"
-    >
+    @if(user) {
+    <div class="flex flex-col w-full text-center mt-8">
         <span class="text-2xl font-semibold mt-2">
             {{ 'user.header.welcome' | translate }} {{ user.name }}
         </span>
         <p class="text-lg text-graylight">{{ user.login }}</p>
     </div>
-    <ng-template #loading>
-        <span>{{ 'user.header.loading' | translate }}</span>
-    </ng-template>
+    }
 </header>
 <main class="flex w-full justify-center md:max-w-4xl md:mx-auto px-6">
     <div class="w-full h-[70vh] flex flex-col">
@@ -35,7 +31,7 @@
         <ul class="rounded-2xl bg-midnightlight mt-4 px-4">
             <li
                 class="border-b-1 border-graylight my-4 cursor-pointer"
-                routerLink="editAccount"
+                (click)="editAccount()"
             >
                 <div class="flex w-full justify-between mb-4">
                     <div class="flex gap-4 items-center">
@@ -57,7 +53,7 @@
             </li>
             <li
                 class="border-b-1 border-graylight my-4 cursor-pointer"
-                routerLink="language"
+                (click)="showDialog()"
             >
                 <div class="flex w-full justify-between mb-4">
                     <div class="flex gap-4 items-center">
@@ -118,4 +114,30 @@
             </li>
         </ul>
     </div>
+
+    <p-dialog
+        [header]="'language.manage.title' | translate"
+        [modal]="true"
+        [(visible)]="visible"
+        [dismissableMask]="true"
+        [breakpoints]="{ '1199px': '80vw', '575px': '80vw' }"
+        [style]="{ width: '40vw', backgroundColor: '#1f1f1f', border: 'none' }"
+        [draggable]="false"
+    >
+        <div class="flex flex-col items-start gap-4">
+            @for (language of languages; track language.key) {
+            <div>
+                <p-radiobutton
+                    [inputId]="language.key"
+                    (onClick)="changeLanguage(language.key)"
+                    [value]="language"
+                    [(ngModel)]="selectedLanguage"
+                />
+                <label [for]="language.key" class="ml-4">{{
+                    language.name
+                }}</label>
+            </div>
+            }
+        </div>
+    </p-dialog>
 </main>
