@@ -14,6 +14,8 @@ import { UserResponse } from '../../../interfaces/user-response.interface';
 import { RouterLink } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { ButtonTaskComponent } from '../../../components/button-task/button-task.component';
+import { ButtonDefaultComponent } from '../../../components/button-default/button-default.component';
 
 interface UserForm {
     name: FormControl;
@@ -32,13 +34,16 @@ interface UserForm {
         DialogModule,
         RadioButtonModule,
         FormsModule,
+        ButtonTaskComponent,
+        ButtonDefaultComponent,
     ],
     templateUrl: './user.component.html',
 })
 export class UserComponent {
     userForm!: FormGroup<UserForm>;
     user?: UserResponse;
-    visible: boolean = false;
+    ModalLanguageIsVisible: boolean = false;
+    ModalDeleteAccountIsVisible: boolean = false;
 
     languages: any[] = [];
     selectedLanguage: any = null;
@@ -65,13 +70,24 @@ export class UserComponent {
         this.view();
     }
 
-    showDialog() {
-        this.visible = true;
+    showLanguageModal() {
+        this.ModalLanguageIsVisible = true;
+    }
+
+    showDeleteModal() {
+        this.ModalDeleteAccountIsVisible = true;
     }
 
     changeLanguage(lang: string) {
-        this.translate.use(lang);
-        localStorage.setItem('lang', lang);
+        this.selectedLanguage = this.languages.find((l) => l.key === lang);
+    }
+
+    confirmLanguageChange() {
+        if (this.selectedLanguage) {
+            this.translate.use(this.selectedLanguage.key);
+            localStorage.setItem('lang', this.selectedLanguage.key);
+            this.ModalLanguageIsVisible = false;
+        }
     }
 
     goBack() {
@@ -89,6 +105,34 @@ export class UserComponent {
             },
             error: () => {
                 console.log('usuario nao encontrado');
+            },
+        });
+    }
+
+    delete() {
+        this.userService.deleteUser().subscribe({
+            next: () => {
+                this.toast.add({
+                    severity: 'info',
+                    summary: this.translate.instant(
+                        'toasts.user.delete.success.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.user.delete.success.details'
+                    ),
+                });
+                this.router.navigate(['/login']);
+            },
+            error: () => {
+                this.toast.add({
+                    severity: 'error',
+                    summary: this.translate.instant(
+                        'toasts.user.delete.error.summary'
+                    ),
+                    detail: this.translate.instant(
+                        'toasts.user.delete.error.details'
+                    ),
+                });
             },
         });
     }

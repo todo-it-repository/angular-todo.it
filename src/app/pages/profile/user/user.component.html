@@ -53,7 +53,7 @@
             </li>
             <li
                 class="border-b-1 border-graylight my-4 cursor-pointer"
-                (click)="showDialog()"
+                (click)="showLanguageModal()"
             >
                 <div class="flex w-full justify-between mb-4">
                     <div class="flex gap-4 items-center">
@@ -75,7 +75,7 @@
             </li>
             <li
                 class="border-b-1 border-graylight my-4 cursor-pointer"
-                routerLink="delete"
+                (click)="showDeleteModal()"
             >
                 <div class="flex w-full justify-between mb-4">
                     <div class="flex gap-4 items-center">
@@ -115,10 +115,11 @@
         </ul>
     </div>
 
+    <!-- MODAL P/ IDIOMA -->
     <p-dialog
         [header]="'language.manage.title' | translate"
         [modal]="true"
-        [(visible)]="visible"
+        [(visible)]="ModalLanguageIsVisible"
         [dismissableMask]="true"
         [breakpoints]="{ '1199px': '80vw', '575px': '80vw' }"
         [style]="{ width: '40vw', backgroundColor: '#1f1f1f', border: 'none' }"
@@ -138,6 +139,45 @@
                 }}</label>
             </div>
             }
+        </div>
+        <div class="flex w-full gap-4 mt-6">
+            <app-button-task
+                class="w-full"
+                (submit)="confirmLanguageChange()"
+                [title]="'language.btn.confirm' | translate"
+            />
+            <app-button-default
+                class="w-full"
+                (submit)="ModalLanguageIsVisible = false"
+                [title]="'language.btn.cancel' | translate"
+            />
+        </div>
+    </p-dialog>
+
+    <!-- MODAL P/ DELETAR CONTA -->
+    <p-dialog
+        [header]="'delete.title' | translate"
+        [modal]="true"
+        [(visible)]="ModalDeleteAccountIsVisible"
+        [dismissableMask]="true"
+        [breakpoints]="{ '1199px': '80vw', '575px': '80vw' }"
+        [style]="{ width: '40vw', backgroundColor: '#1f1f1f', border: 'none' }"
+        [draggable]="false"
+    >
+        <span class="text-base text-white opacity-80">{{
+            'delete.description' | translate
+        }}</span>
+        <div class="flex w-full gap-4 mt-6">
+            <app-button-task
+                class="w-full"
+                (submit)="delete()"
+                [title]="'delete.btn.confirm' | translate"
+            />
+            <app-button-default
+                class="w-full"
+                (submit)="ModalDeleteAccountIsVisible = false"
+                [title]="'delete.btn.cancel' | translate"
+            />
         </div>
     </p-dialog>
 </main>

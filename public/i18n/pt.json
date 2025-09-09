@@ -97,6 +97,18 @@
             "title": "Idiomas disponíveis",
             "pt": "Português",
             "en": "Inglês"
+        },
+        "btn": {
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
+        }
+    },
+    "delete": {
+        "title": "Confirme sua escolha",
+        "description": "Esta ação é irreversível, tem certeza que deseja excluir sua conta?",
+        "btn": {
+            "confirm": "Confirmar",
+            "cancel": "Cancelar"
         }
     },
     "components": {
@@ -176,6 +188,16 @@
                     "summary": "Data e hora inválidas",
                     "details": "A data e hora inicial devem ser posteriores à data atual."
                 }
+            }
+        },
+        "user": {
+            "success": {
+                "summary": "Conta excluída!",
+                "details": "Sua conta foi excluída com sucesso."
+            },
+            "error": {
+                "summary": "Erro ao excluir sua conta.",
+                "details": "Não foi possível excluir sua conta. Tente novamente mais tarde."
             }
         },
         "serverDown": {

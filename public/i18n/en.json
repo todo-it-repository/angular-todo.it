@@ -97,6 +97,18 @@
             "title": "Avaliable languages",
             "pt": "Portuguese",
             "en": "English"
+        },
+        "btn": {
+            "confirm": "Confirm",
+            "cancel": "Cancel"
+        }
+    },
+    "delete": {
+        "title": "Confirm your selection",
+        "description": "This action is irreversible. Are you sure you want to delete your account?",
+        "btn": {
+            "confirm": "Confirm",
+            "cancel": "Cancel"
         }
     },
     "components": {
@@ -176,6 +188,16 @@
                     "summary": "Invalid date and time",
                     "details": "The start date and time must be after the current date."
                 }
+            }
+        },
+        "user": {
+            "success": {
+                "summary": "Account deleted!",
+                "details": "Your account has been successfully deleted."
+            },
+            "error": {
+                "summary": "Error deleting your account.",
+                "details": "We were unable to delete your account. Please try again later."
             }
         },
         "serverDown": {
